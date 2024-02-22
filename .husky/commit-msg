@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+pnpm commitlint --edit --config=.commitlintrc.ts ||
+(
+    echo '🤔🤔🤔🤔 Looks like your message format is not right 🤔🤔🤔🤔
+              Commit Lint failed: Reformat your commit message according to convention.
+    '
+    false;
+)

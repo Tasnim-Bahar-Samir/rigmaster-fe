@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Talen Tracker - A Mentors and Learners Platform
 
-## Getting Started
+[![Framework](https://img.shields.io/badge/framework-next.js-black.svg?style=for-the-badge&logo=next.js)](https://nextjs.org)
+[![CSSFramework](https://img.shields.io/badge/css%20framework-tailwind%20css-06B6D4.svg?style=for-the-badge&logo=tailwindcss)](https://tailwindcss.com)
+[![MotionLibrary](https://img.shields.io/badge/motion%20library-framer%20motion-0055FF.svg?style=for-the-badge&logo=framer)](https://www.framer.com/motion)
+[![Language](https://img.shields.io/badge/language-Typescript-3178C6.svg?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org)
+[![PackageManager](https://img.shields.io/badge/package%20manager-pnpm-F69220.svg?style=for-the-badge&logo=pnpm)](https://pnpm.io/)
+[![License](https://img.shields.io/badge/license-Proprietary-F40D12.svg?style=for-the-badge&logo=adblock)](https://github.com/next-moov/next-moov-fe/blob/master/LICENSE)
 
-First, run the development server:
+Next.js app configured with:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Written in [Typescript](https://www.typescriptlang.org/)
+- Styled with [Tailwind CSS](https://tailwindcss.com/) and [Framer Motion](https://www.framer.com/motion/)
+- Linting with [ESLint](https://eslint.org/)
+- Formatting with [Prettier](https://prettier.io/)
+- Linting, typechecking and formatting on by default using [husky](https://github.com/typicode/husky) for commit hooks
+  and [lint-staged](https://github.com/okonet/lint-staged) for staged files
+- Testing with [Jest](https://jestjs.io/)
+  and [react-testing-library](https://testing-library.com/docs/react-testing-library/intro)
+
+## How to use
+
+To begin
+
+```sh
+pnpm install && pnpm dlx husky install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To run development server (PORT = 3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```sh
+pnpm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+To format and test code
 
-## Learn More
+```sh
+pnpm run test-all
+```
 
-To learn more about Next.js, take a look at the following resources:
+To build files
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```sh
+pnpm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+To run production server (PORT = 5001)
 
-## Deploy on Vercel
+```sh
+pnpm run start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+##### Copyright (c) 2024 Rigmaster
+
+This software is licensed under Proprietary LICENSE.
