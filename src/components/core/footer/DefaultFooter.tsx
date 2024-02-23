@@ -1,16 +1,31 @@
 import { nav_categoryData } from '@/data/dummy.data';
 import Link from 'next/link';
 import React from 'react';
-import { FaFacebook, FaPhone } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaPhone, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 
 const SocialSection = () => {
   return (
-    <ul>
-      <li>
+    <ul className="flex items-center gap-3 xl:gap-4">
+      <li className="bg-[#C2A466] rounded-full p-2 text-white w-fit hover:bg-black transition-all">
         <Link href={'https://www.facebook.com/'} target="_blank">
-          <FaFacebook />
+          <FaFacebook size={18} />
         </Link>
+      </li>
+      <li className="bg-[#C2A466] rounded-full p-2 text-white w-fit hover:bg-black transition-all">
+        <Link href={'https://www.instagram.com/'} target="_blank">
+          <FaInstagram size={18} />
+        </Link>
+      </li>
+      <li className="bg-[#C2A466] rounded-full p-2 text-white w-fit hover:bg-black transition-all">
+        <Link href={'https://twitter.com/'} target="_blank">
+          <FaTwitter size={18} />
+        </Link>
+      </li>
+      <li className="bg-[#C2A466] rounded-full p-2 text-white w-fit hover:bg-black transition-all">
+        <a aria-label="Chat on WhatsApp" href="https://wa.me/+880 1572-241894" target="_blank">
+          <FaWhatsapp size={18} />
+        </a>
       </li>
     </ul>
   );
@@ -50,14 +65,14 @@ const DefaultFooter = () => {
           <h5 className="font-medium xl:text-lg">Contact Info</h5>
           <ul className="flex flex-col gap-3 text-sm xl:gap-4">
             <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <MdEmail />
+              <a href="mailto: example@gmail.com" className="flex items-center gap-2">
+                <MdEmail className="text-[#C2A466]" />
                 example@gmail.com
-              </div>
-              <div className="flex items-center gap-2">
-                <FaPhone />
-                01244569877
-              </div>
+              </a>
+              <a href="tel:++880 1572-241894" className="flex items-center gap-2">
+                <FaPhone className="text-[#C2A466]" />
+                +880 1572-241894
+              </a>
             </div>
             <SocialSection />
           </ul>
