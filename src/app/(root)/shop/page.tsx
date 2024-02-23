@@ -1,7 +1,7 @@
 import ShopPage from '@/components/pages/shop/Shop.page';
 import React from 'react';
 
-const ProductPage = () => {
+const Shop = () => {
   return (
     <div>
       <ShopPage />
@@ -9,4 +9,4 @@ const ProductPage = () => {
   );
 };
 
-export default ProductPage;
+export default Shop;

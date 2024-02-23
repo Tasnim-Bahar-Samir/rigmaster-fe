@@ -34,7 +34,7 @@ const SocialSection = () => {
 const DefaultFooter = () => {
   const year = new Date().getFullYear();
   return (
-    <footer className="sticky rm-commonContainer w-full top-[100vh] py-10 xl:py-20">
+    <footer className="sticky rm-commonContainer w-full top-[100vh] pt-10 pb-5 xl:pt-20">
       <div className="flex flex-col justify-between items-center gap-7 text-center lg:gap-5 lg:text-start lg:flex-row lg:items-start">
         <div className="space-y-4 max-w-[240px] md:gap-y-5 xl:space-y-7">
           <h4 className="font-bold text-2xl">LOGO</h4>
