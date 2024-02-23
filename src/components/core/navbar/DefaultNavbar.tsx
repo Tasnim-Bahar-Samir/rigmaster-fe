@@ -36,7 +36,13 @@ const DefaultNavbar = () => {
             <MobileNav />
           </div>
           <Link href={'/'}>
-            <Image src={'/images/logos/logo2.webp'} width={120} height={30} alt="RIGMASTER" />
+            <Image
+              priority
+              src={'/images/logos/logo2.webp'}
+              width={120}
+              height={30}
+              alt="RIGMASTER"
+            />
           </Link>
           <div className="items-center w-full gap-4 hidden lg:flex xl:gap-5">
             <SearchSection />

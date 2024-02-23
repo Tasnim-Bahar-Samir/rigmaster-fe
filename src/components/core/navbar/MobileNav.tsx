@@ -21,7 +21,13 @@ const MobileNav = () => {
         <div className=" w-72 p-5 h-full dark:text-white dark:bg-[#183423]">
           <div className="flex justify-between items-center border-b">
             <Link href={'/'}>
-              <Image src={'/images/logos/logo2.webp'} width={120} height={30} alt="RIGMASTER" />
+              <Image
+                priority
+                src={'/images/logos/logo2.webp'}
+                width={120}
+                height={30}
+                alt="RIGMASTER"
+              />
             </Link>
             <span className="cursor-pointer" onClick={() => setOpen(!open)}>
               x
