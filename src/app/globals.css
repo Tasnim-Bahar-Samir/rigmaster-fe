@@ -1,3 +1,36 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+
+.rm-commonContainer {
+    max-width: 1517px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 130px;
+    padding-right: 130px;
+  }
+  
+  @media screen and (max-width: 1280px) {
+    .rm-commonContainer {
+      padding-left: 80px;
+      padding-right: 80px;
+    }
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .rm-commonContainer {
+      padding-left: 50px;
+      padding-right: 50px;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .rm-commonContainer {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+  
