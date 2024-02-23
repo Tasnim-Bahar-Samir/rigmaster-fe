@@ -5,12 +5,13 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { IoSearchOutline } from 'react-icons/io5';
 import MobileNav from './MobileNav';
 import CartAside from '../cart/CartAside';
+import Image from 'next/legacy/image';
 
 const CategoryMenu = () => {
   return (
     <div className="items-center justify-center gap-4 text-white hidden py-3 bg-[#C2A466] lg:flex xl:gap-5">
       {nav_categoryData.map((i) => (
-        <Link href={'#'} key={Math.random()}>
+        <Link href={'/product-category/eid-collection'} key={Math.random()}>
           {i}
         </Link>
       ))}
@@ -28,15 +29,15 @@ export const SearchSection = () => {
 };
 const DefaultNavbar = () => {
   return (
-    <nav className="">
+    <nav className="sticky top-0 bg-white z-10">
       <div className="py-4 ">
         <div className="rm-commonContainer flex justify-between items-center lg:grid lg:grid-cols-3">
           <div className="lg:hidden">
             <MobileNav />
           </div>
-          <div>
-            <h1 className="font-bold text-2xl">LOGO</h1>
-          </div>
+          <Link href={'/'}>
+            <Image src={'/images/logos/logo2.webp'} width={120} height={30} alt="RIGMASTER" />
+          </Link>
           <div className="items-center w-full gap-4 hidden lg:flex xl:gap-5">
             <SearchSection />
           </div>

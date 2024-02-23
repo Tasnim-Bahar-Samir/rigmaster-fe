@@ -6,9 +6,10 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination } from 'swiper/modules';
-import { CategoryLoadingCard } from '@/components/core/cards/LoadingCards';
+import { ProductLoadingCard } from '@/components/core/cards/LoadingCards';
 import { ProductDataType } from '@/type/product.type';
 import ProductCard from '@/components/core/cards/ProductCard';
+import Link from 'next/link';
 
 type Category1ProductsProps = {
   title: string;
@@ -20,9 +21,12 @@ const CategoryWiseProducts: FC<Category1ProductsProps> = ({ title, productData, 
     <div className="rm-commonContainer">
       <div className="flex items-center justify-between mb-5 md:mb-7">
         <h5 className="text-lg font-semibold md:text-xl xl:text-2xl">{title}</h5>
-        <button className="px-4 py-2 bg-[#C2A466] text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4">
+        <Link
+          href={'/product-category/eid-collection'}
+          className="px-4 py-2 bg-[#C2A466] text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4"
+        >
           View All
-        </button>
+        </Link>
       </div>
       <Swiper
         speed={2000}
@@ -69,7 +73,7 @@ const CategoryWiseProducts: FC<Category1ProductsProps> = ({ title, productData, 
               {isLoading
                 ? [...new Array(6)].map(() => (
                     <SwiperSlide className="" key={Math.random()}>
-                      <CategoryLoadingCard />
+                      <ProductLoadingCard />
                     </SwiperSlide>
                   ))
                 : !isLoading &&

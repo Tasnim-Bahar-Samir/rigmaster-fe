@@ -1,7 +1,7 @@
-import { CategoryLoadingCard } from '@/components/core/cards/LoadingCards';
+import { ProductLoadingCard } from '@/components/core/cards/LoadingCards';
 import ProductCard from '@/components/core/cards/ProductCard';
 import { ProductDataType } from '@/type/product.type';
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 type ProductListType = {
   isLoading: boolean;
@@ -14,7 +14,7 @@ const ProductList: FC<ProductListType> = ({ isLoading, productData }) => {
       {isLoading ? (
         <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:gap-5 xl:grid-cols-4 xl:gap-6">
           {[...new Array(10)].map(() => (
-            <CategoryLoadingCard key={Math.random()} />
+            <ProductLoadingCard key={Math.random()} />
           ))}
         </div>
       ) : productData?.length > 0 ? (

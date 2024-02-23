@@ -1,4 +1,5 @@
 import { nav_categoryData } from '@/data/dummy.data';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { FaFacebook, FaInstagram, FaPhone, FaTwitter, FaWhatsapp } from 'react-icons/fa';
@@ -37,7 +38,10 @@ const DefaultFooter = () => {
     <footer className="sticky rm-commonContainer w-full top-[100vh] pt-10 pb-5 xl:pt-20">
       <div className="flex flex-col justify-between items-center gap-7 text-center lg:gap-5 lg:text-start lg:flex-row lg:items-start">
         <div className="space-y-4 max-w-[240px] md:gap-y-5 xl:space-y-7">
-          <h4 className="font-bold text-2xl">LOGO</h4>
+          <Link className="mx-auto w-fit inline-block lg:mx-0" href={'/'}>
+            {' '}
+            <Image src={'/images/logos/logo2.webp'} width={120} height={30} alt="RIGMASTER" />
+          </Link>
           <p className="text-sm xl:text-[16px]">
             Welcome to Rig Master! As a brand, we stand for heritage & contemporary styling. We
             believe, fabulous quality should be affordable!
@@ -47,18 +51,28 @@ const DefaultFooter = () => {
           <h5 className="font-medium xl:text-lg">Categories</h5>
           <ul className="flex flex-col gap-3 text-sm xl:gap-4">
             {nav_categoryData.map((i) => (
-              <li className="hover:underline" key={Math.random()}>
+              <Link
+                href={'/product-category/eid-collection'}
+                className="cursor-pointer hover:underline"
+                key={Math.random()}
+              >
                 {i}
-              </li>
+              </Link>
             ))}
           </ul>
         </div>
         <div className="space-y-4 md:gap-y-5 xl:space-y-7">
           <h5 className="font-medium xl:text-lg">Quick Links</h5>
           <ul className="flex flex-col gap-3 text-sm xl:gap-4">
-            <li className="hover:underline">Contact Us</li>
-            <li className="hover:underline">Terms and Conditions</li>
-            <li className="hover:underline">Privacy Policy</li>
+            <Link href={'/contact-us'} className="hover:underline">
+              Contact Us
+            </Link>
+            <Link href={'#'} className="hover:underline">
+              Terms and Conditions
+            </Link>
+            <Link href={'#'} className="hover:underline">
+              Privacy Policy
+            </Link>
           </ul>
         </div>
         <div className="space-y-4 md:gap-y-5 xl:space-y-7">
@@ -79,7 +93,7 @@ const DefaultFooter = () => {
         </div>
       </div>
       <p className="h-[0.5px] my-7 bg-slate-200"></p>
-      <p className="text-center text-sm xl:text-[16px]">{`© Copyright ${year} TalentTracker, All right reserved.`}</p>
+      <p className="text-center text-sm xl:text-[16px]">{`© Copyright ${year} Rigmaster, All right reserved.`}</p>
     </footer>
   );
 };

@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { SearchSection } from './DefaultNavbar';
 import { nav_categoryData } from '@/data/dummy.data';
+import Image from 'next/legacy/image';
+import Link from 'next/link';
 
 const MobileNav = () => {
   const [open, setOpen] = useState(false);
@@ -18,7 +20,9 @@ const MobileNav = () => {
       <Drawer anchor={'left'} open={open} onClose={() => setOpen(!open)}>
         <div className=" w-72 p-5 h-full dark:text-white dark:bg-[#183423]">
           <div className="flex justify-between items-center border-b">
-            <h1 className="font-bold text-2xl">LOGO</h1>
+            <Link href={'/'}>
+              <Image src={'/images/logos/logo2.webp'} width={120} height={30} alt="RIGMASTER" />
+            </Link>
             <span className="cursor-pointer" onClick={() => setOpen(!open)}>
               x
             </span>
@@ -27,9 +31,13 @@ const MobileNav = () => {
             <SearchSection />
             <ul className="flex mt-4 flex-col ">
               {nav_categoryData.map((i) => (
-                <li className="py-3 inline-block border-b" key={Math.random()}>
+                <Link
+                  href={'/product-category/eid-collection'}
+                  className="py-3 inline-block border-b"
+                  key={Math.random()}
+                >
                   {i}
-                </li>
+                </Link>
               ))}
             </ul>
           </div>

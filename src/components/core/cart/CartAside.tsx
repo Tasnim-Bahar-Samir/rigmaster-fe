@@ -1,5 +1,6 @@
 'use client';
 import { Drawer } from '@mui/material';
+import Link from 'next/link';
 import { useState } from 'react';
 import { MdDelete, MdOutlineShoppingBag } from 'react-icons/md';
 
@@ -42,12 +43,18 @@ const CartAside = () => {
               ))}
             </ul>
             <div className="space-y-3 absolute w-[90%] bottom-4 left-4">
-              <button className="px-4 gap-1 w-full py-2 bg-[#C2A466] text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4">
-                View Full Cart
-              </button>
-              <button className="px-4 w-full gap-1 py-2 bg-[#C2A466] text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4">
+              <Link
+                href={'/cart'}
+                className="px-4 inline-block text-center gap-1 w-full py-2 bg-[black] text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4"
+              >
+                View Cart
+              </Link>
+              <Link
+                href={'/checkout'}
+                className="px-4 inline-block text-center w-full gap-1 py-2 bg-[black] text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4"
+              >
                 Checkout
-              </button>
+              </Link>
             </div>
           </div>
         </div>

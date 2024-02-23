@@ -10,7 +10,7 @@ type CategoryCardType = {
 
 const CategoryCard: FC<CategoryCardType> = ({ title, img, slug }) => {
   return (
-    <Link href={`/product-category/${slug}`} className="border block w-fit border-[#C2A466] p-2">
+    <Link href={`/product-category/${slug}`} className="border block border-[#C2A466] p-2">
       <div className="relative">
         <Image
           className=""
@@ -21,7 +21,7 @@ const CategoryCard: FC<CategoryCardType> = ({ title, img, slug }) => {
           objectFit="cover"
         />
       </div>
-      <h5 className="font-medium text-center text-sm my-3 xl:text-[16px]">{title}</h5>
+      <h5 className="font-medium text-center text-sm my-3 truncate xl:text-[16px]">{title}</h5>
     </Link>
   );
 };

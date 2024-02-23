@@ -3,6 +3,7 @@ import ProductList from './ProductList';
 import repeatObject from '@/libs/repeatObjects';
 import { eidProductData } from '@/data/dummy.data';
 import Link from 'next/link';
+import { Pagination } from '@mui/material';
 
 const ShopPage = () => {
   return (
@@ -18,6 +19,9 @@ const ShopPage = () => {
         </div>
       </div>
       <ProductList isLoading={false} productData={repeatObject(eidProductData, 16)} />
+      <div className="flex items-center justify-center mt-5 lg:mt-8">
+        <Pagination count={10} />
+      </div>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.css';
 import { StyledEngineProvider } from '@mui/material';
+import ToasterProvider from '@/components/providers/ToasterProvider';
 // import { SnackbarProvider } from 'notistack';
 
 const poppins = Poppins({
@@ -22,9 +23,9 @@ const RootLayout = ({
   return (
     <html lang="en">
       <StyledEngineProvider injectFirst>
-        {/* <SnackbarProvider maxSnack={3}> */}
-        <body className={poppins.className}>{children}</body>
-        {/* </SnackbarProvider> */}
+        <ToasterProvider>
+          <body className={poppins.className}>{children}</body>
+        </ToasterProvider>
       </StyledEngineProvider>
     </html>
   );
