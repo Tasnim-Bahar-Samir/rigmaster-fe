@@ -1,7 +1,12 @@
+import { calculateTotalBill, orderItem } from '@/libs/calculateBill';
 import { checkoutFormValidation } from '@/libs/validation/CheckoutForm.validation';
+import { selectedProductStore } from '@/store/ProductCookiesStore';
+import { CartDataType } from '@/type/cart.type';
 import { TextField } from '@mui/material';
+import { deleteCookie } from 'cookies-next';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
+import { enqueueSnackbar } from 'notistack';
 import React, { FC } from 'react';
 
 type CheckoutPageContainerProps = {
@@ -9,7 +14,11 @@ type CheckoutPageContainerProps = {
   handleDataSubmit: Function;
 };
 
-const CheckoutPageContainer: FC<CheckoutPageContainerProps> = ({ handleDataSubmit }) => {
+const CheckoutPageContainer: FC<CheckoutPageContainerProps> = ({
+  handleDataSubmit,
+  isDataSubmitting,
+}) => {
+  const { products, setPrevCookies } = selectedProductStore();
   const { push } = useRouter();
   const { handleChange, values, touched, errors, handleSubmit, resetForm } = useFormik({
     initialValues: {
@@ -23,16 +32,27 @@ const CheckoutPageContainer: FC<CheckoutPageContainerProps> = ({ handleDataSubmi
     validationSchema: checkoutFormValidation,
     onSubmit: async (data: any) => {
       try {
-        await handleDataSubmit(data);
+        const billingInfo = {
+          name: data?.name,
+          email: data?.email,
+          phone: data.phone,
+          address: data.address,
+        };
+        const codOrderData = {
+          purchase_order: orderItem(products),
+          billing_address: billingInfo,
+        };
+        const res = await handleDataSubmit(codOrderData);
         resetForm();
-        push('/checkout/success');
+        push(`/checkout/success/${res.id}`);
+        deleteCookie('addedProducts');
+        setPrevCookies([]);
       } catch (err: any) {
-        //   for (let key of err.errors) {
-        //     toast({
-        //       variant: 'destructive',
-        //       description: `${key?.attr} - ${key?.detail}`,
-        //     });
-        //   }
+        for (let key of err.errors) {
+          enqueueSnackbar(`${key?.attr} - ${key?.detail}`, {
+            variant: 'error',
+          });
+        }
       }
     },
   });
@@ -96,13 +116,15 @@ const CheckoutPageContainer: FC<CheckoutPageContainerProps> = ({ handleDataSubmi
             <div className="p-5">
               <h3 className=" font-semibold mt-3 xl:mb-5 xl:text-lg"> Total Bill</h3>
               {/* order list  */}
-              <div className="mb-5">
+              <div className="mb-7">
                 <h5 className="font-medium my-2">Your Order</h5>
                 <div className="space-y-1">
-                  {[...new Array(2)].map(() => (
+                  {products.map((i: CartDataType) => (
                     <div className="flex items-center justify-between" key={Math.random()}>
-                      <p className="text-sm">Luxury Punjabi-XL x 1 ৳1500</p>{' '}
-                      <p className="text-[#C2A466]">৳1500</p>
+                      <p className="text-sm">
+                        {i.title}-{i.sizeTitle} x {i.quantity} ৳{i.price}
+                      </p>{' '}
+                      <p className="">৳{i.price * i.quantity}</p>
                     </div>
                   ))}
                 </div>
@@ -110,23 +132,28 @@ const CheckoutPageContainer: FC<CheckoutPageContainerProps> = ({ handleDataSubmi
               <div className="space-y-5">
                 <div className="text-sm flex justify-between">
                   <span>Subtotal</span>
-                  <span className="text--[#C2A466]">৳ 3000</span>
+                  <span className="text--[#C2A466]">৳ {calculateTotalBill(products)}</span>
                 </div>
                 <div className="text-sm flex justify-between">
                   <span>Delivery Charge</span>
-                  <span className="text--[#C2A466]">৳ 0</span>
+                  <span className="text--[#C2A466]">৳ 0(free)</span>
                 </div>
-                <div className="text-sm flex justify-between">
+                <div className=" flex justify-between">
                   <span>Total</span>
-                  <span className="text--[#C2A466]">৳ 3000</span>
+                  <span className="text--[#C2A466] text-[#C2A466] font-semibold">
+                    ৳ {calculateTotalBill(products)}
+                  </span>
                 </div>
               </div>
               <div className="flex mt-4 mb-3 items-center gap-1">
                 <input type="radio" checked name="" id="cod" />
                 <label htmlFor="cod">Cash On Delivery(COD)</label>
               </div>
-              <button className="px-4 mt-3 gap-1 w-full py-2 bg-[#C2A466] text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4 xl:mt-5">
-                Place Order
+              <button
+                disabled={isDataSubmitting}
+                className="disabled:bg-slate-500 px-4 mt-3 gap-1 w-full py-2 bg-[#C2A466] text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4 xl:mt-5"
+              >
+                {isDataSubmitting ? 'Processing...' : 'Place Order'}
               </button>
             </div>
           </div>

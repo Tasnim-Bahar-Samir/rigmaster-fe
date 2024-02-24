@@ -1,11 +1,12 @@
-import React from 'react';
+'use client';
 import ProductList from './ProductList';
-import repeatObject from '@/libs/repeatObjects';
-import { eidProductData } from '@/data/dummy.data';
 import Link from 'next/link';
 import { Pagination } from '@mui/material';
+import { useGetProductData } from '@/hooks/product.hooks';
 
 const ShopPage = () => {
+  const { data, isLoading } = useGetProductData();
+  // console.log(data)
   return (
     <div className="rm-commonContainer">
       <div className=" items-center justify-between my-5 space-y-3 md:space-y-0 md:flex md:py-8 xl:py-10">
@@ -18,7 +19,7 @@ const ShopPage = () => {
           <p className="cursor-pointer text-slate-500">x Clear Filter</p>
         </div>
       </div>
-      <ProductList isLoading={false} productData={repeatObject(eidProductData, 16)} />
+      <ProductList isLoading={isLoading} productData={data?.results || []} />
       <div className="flex items-center justify-center mt-5 lg:mt-8">
         <Pagination count={10} />
       </div>

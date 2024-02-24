@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google';
 import './globals.css';
 import { StyledEngineProvider } from '@mui/material';
 import ToasterProvider from '@/components/providers/ToasterProvider';
+import TanStackQueryProvider from '@/components/providers/TanStackQueryProvider';
 // import { SnackbarProvider } from 'notistack';
 
 const poppins = Poppins({
@@ -22,11 +23,13 @@ const RootLayout = ({
 }>) => {
   return (
     <html lang="en">
-      <StyledEngineProvider injectFirst>
-        <ToasterProvider>
-          <body className={poppins.className}>{children}</body>
-        </ToasterProvider>
-      </StyledEngineProvider>
+      <body className={poppins.className}>
+        <StyledEngineProvider injectFirst>
+          <ToasterProvider>
+            <TanStackQueryProvider>{children}</TanStackQueryProvider>
+          </ToasterProvider>
+        </StyledEngineProvider>
+      </body>
     </html>
   );
 };
