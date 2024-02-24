@@ -15,7 +15,7 @@ export const useGetOrderData = () => {
 };
 
 export const useAddOrder = () => {
-  const queryClient: any = useQueryClient();
+  const queryClient = useQueryClient();
   // const { data: session }: any = useSession();
 
   return useMutation({

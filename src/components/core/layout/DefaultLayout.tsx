@@ -13,7 +13,7 @@ const DefaultLayout = ({ children }: { children: React.ReactNode }) => {
   }, [setPrevCookies]);
   return (
     <div>
-      <NextTopLoader color="black" showSpinner={false} />
+      <NextTopLoader color="#C2A466" showSpinner={false} />
       <DefaultNavbar />
       {children}
       <DefaultFooter />

@@ -31,7 +31,7 @@ const CartAside = () => {
             <h1 className="font-bold text-2xl">Cart</h1>
           </div>
           <div className="mt-3">
-            <ul className="flex mt-4 flex-col gap-5">
+            <ul className="flex h-[80vh] overflow-y-auto mt-4 flex-col gap-5">
               {products?.map((i: CartDataType) => (
                 <div className="flex items-center justify-between" key={Math.random()}>
                   <div className="flex items-center gap-3">
