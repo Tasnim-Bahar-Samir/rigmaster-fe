@@ -51,3 +51,19 @@ export const eidProductData = {
   price: 1500,
   slug: 'luxury-punjabi',
 };
+
+export const sizeData = ['S', 'M', 'L', 'Xl', 'XXL'];
+export const imgData = [
+  {
+    id: 1,
+    img: '/images/prod-img2.webp',
+  },
+  {
+    id: 1,
+    img: '/images/prod-img.webp',
+  },
+  {
+    id: 1,
+    img: '/images/prod-img2.webp',
+  },
+];

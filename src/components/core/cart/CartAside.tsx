@@ -17,7 +17,7 @@ const CartAside = () => {
         </span>
       </div>
       <Drawer anchor={'right'} open={open} onClose={() => setOpen(!open)}>
-        <div className=" w-80 p-5 h-full dark:text-white dark:bg-[#183423]">
+        <div className=" w-80 p-5 h-full ">
           <div className="flex justify-between items-center border-b">
             <span className="cursor-pointer text-lg font-medium" onClick={() => setOpen(!open)}>
               x

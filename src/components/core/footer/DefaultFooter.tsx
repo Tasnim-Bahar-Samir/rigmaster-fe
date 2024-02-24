@@ -40,7 +40,13 @@ const DefaultFooter = () => {
         <div className="space-y-4 max-w-[240px] md:gap-y-5 xl:space-y-7">
           <Link className="mx-auto w-fit inline-block lg:mx-0" href={'/'}>
             {' '}
-            <Image src={'/images/logos/logo2.webp'} width={120} height={30} alt="RIGMASTER" />
+            <Image
+              priority
+              src={'/images/logos/logo2.webp'}
+              width={120}
+              height={30}
+              alt="RIGMASTER"
+            />
           </Link>
           <p className="text-sm xl:text-[16px]">
             Welcome to Rig Master! As a brand, we stand for heritage & contemporary styling. We

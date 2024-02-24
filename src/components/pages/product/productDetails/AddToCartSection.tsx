@@ -1,44 +1,39 @@
+'use client';
+import { imgData, sizeData } from '@/data/dummy.data';
 import Image from 'next/legacy/image';
-import React from 'react';
+import Link from 'next/link';
+import React, { useState } from 'react';
 
 const AddToCartSection = () => {
+  const [size, setSize] = useState('');
+  const [img, setImg] = useState(imgData[0]);
   return (
     <div className="flex gap-10 flex-col lg:gap-20 md:flex-row md:justify-center">
       <div className="md:w-1/2">
         <div className="flex flex-col-reverse gap-3 lg:flex-row">
           <div className=" gap-2 grid grid-cols-4 lg:flex lg:flex-col lg:w-1/5">
-            <Image
-              className=""
-              src={'/images/prod-img.webp'}
-              width={298}
-              height={300}
-              alt="product_img"
-              layout="responsive"
-              objectFit="cover"
-            />
-            <Image
-              className=""
-              src={'/images/prod-img.webp'}
-              width={298}
-              height={300}
-              alt="product_img"
-              layout="responsive"
-              objectFit="cover"
-            />
-            <Image
-              className=""
-              src={'/images/prod-img.webp'}
-              width={298}
-              height={300}
-              alt="product_img"
-              layout="responsive"
-              objectFit="cover"
-            />
+            {imgData.map((i) => (
+              <div
+                key={Math.random()}
+                className={`cursor-pointer border ${i === img ? 'border-2 border-[black]' : ''}`}
+              >
+                <Image
+                  onClick={() => setImg(i)}
+                  className={`cursor-pointer border ${i.id === img.id ? 'border border-[#C2A466]' : ''}`}
+                  src={i.img}
+                  width={298}
+                  height={300}
+                  alt="product_img"
+                  layout="responsive"
+                  objectFit="cover"
+                />
+              </div>
+            ))}
           </div>
           <div className="lg:w-4/5">
             <Image
               className=""
-              src={'/images/prod-img.webp'}
+              src={img.img}
               width={298}
               height={300}
               alt="product_img"
@@ -66,9 +61,13 @@ const AddToCartSection = () => {
           <div className="space-y-2 xl:space-y-4">
             <h5 className="font-medium md:text-lg xl:text-xl">Select Size</h5>
             <div className="flex items-center flex-wrap gap-3 xl:gap-4">
-              {[...new Array(5)].map(() => (
-                <button key={Math.random()} className="p-2 border text-sm xl:p-4">
-                  XL
+              {sizeData.map((i) => (
+                <button
+                  onClick={() => setSize(i)}
+                  key={Math.random()}
+                  className={`${size == i ? 'border-black' : ''} p-2 border text-sm xl:p-4`}
+                >
+                  {i}
                 </button>
               ))}
             </div>
@@ -84,9 +83,12 @@ const AddToCartSection = () => {
               <button className="px-4 py-2 bg-black text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4">
                 Add To Cart
               </button>
-              <button className="px-4 py-2 bg-[#C2A466] text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4">
+              <Link
+                href={'/checkout'}
+                className="px-4 py-2 bg-[#C2A466] text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4"
+              >
                 Buy Now
-              </button>
+              </Link>
             </div>
           </div>
         </div>

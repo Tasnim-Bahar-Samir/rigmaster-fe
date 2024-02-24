@@ -47,6 +47,7 @@ const HomeHero = () => {
           <SwiperSlide>
             <Link href={`/product-category/eid-collection`} className="relative">
               <Image
+                priority
                 src={'/images/banner-images/bannerimg-1.webp'}
                 width={1920}
                 height={1000}
@@ -59,6 +60,7 @@ const HomeHero = () => {
           <SwiperSlide>
             <Link href={`/product-category/eid-collection`} className="relative">
               <Image
+                priority
                 src={'/images/homeImages/home-img1.webp'}
                 width={1920}
                 height={1000}
@@ -71,6 +73,7 @@ const HomeHero = () => {
           <SwiperSlide>
             <Link href={`/product-category/eid-collection`} className="relative">
               <Image
+                priority
                 src={'/images/banner-images/bannerimg-1.webp'}
                 width={1920}
                 height={1000}
