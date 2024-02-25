@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useDeleteOrder, useGetOrderData, useUpdateOrderData } from '@/hooks/order.hooks';
 import { dateWithTimeFormat } from '@/libs/convertDateFormat';
 import OrderActions from './OrderActions';
+import { statusData } from '@/data/dummy.data';
 
 export const OrderDataColumn: DashboardTableColumn[] = [
   {
@@ -82,11 +83,26 @@ const _col = [
 //default component
 const OrderManagement = () => {
   const [searchValue, setSearchValue] = useState('');
-  const { data, isLoading } = useGetOrderData(searchValue);
+  const [status, setStatus] = useState('');
+  const { data, isLoading } = useGetOrderData(searchValue, status);
   return (
     <div className="space-y-10">
       <div className="flex items-center justify-between">
         <DashboardTableSearch setSearchValue={setSearchValue} />
+        <div className="w-fit px-4 border rounded-lg">
+          <select
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            className="bg-inherit py-2 outline-none"
+          >
+            <option value="">All Orders</option>
+            {statusData.map((i) => (
+              <option value={i.value} key={Math.random()}>
+                {i.title}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
       <div>
         <div>
