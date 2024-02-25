@@ -73,7 +73,7 @@ const AsideMenu = () => {
                   pathname === '/dashboard/product/all' ? 'text-[#C2A466]' : ''
                 }`}
               >
-                <Link href="product/all">Product List</Link>
+                <Link href="/dashboard/product/all">Product List</Link>
               </li>
             </ul>
           </AccordionDetails>

@@ -13,12 +13,12 @@ export type TeamMemberResponseType = {
   created_at: string;
 };
 
-export const useGetProductData = () => {
+export const useGetProductData = (search = '') => {
   return useQuery({
-    queryKey: ['product'],
+    queryKey: ['product', search],
     queryFn: () =>
       axiousResuest({
-        url: `/product/management/`,
+        url: `/product/management/?search=${search}`,
         method: 'get',
       }),
   });
