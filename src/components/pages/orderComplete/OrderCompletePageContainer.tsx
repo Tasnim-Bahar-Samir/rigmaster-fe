@@ -32,8 +32,8 @@ const OrderCompletePageContainer = ({ orderDetails }: { orderDetails: any }) => 
             {orderDetails?.purchase_order?.map((i: any) => (
               <div className="flex items-center justify-between" key={Math.random()}>
                 <p className="text-sm font-medium flex items-center gap-4">
-                  {i?.product?.title} <span>x</span> <span>{i.quantity}</span>{' '}
-                  <span>৳{i?.product?.price}</span>
+                  {i?.product?.title}-{i?.others_info?.product_size_variant?.size_title}{' '}
+                  <span>x</span> <span>{i.quantity}</span> <span>৳{i?.product?.price}</span>
                 </p>{' '}
                 <p className="">৳{i.quantity * i?.product?.price}</p>
               </div>

@@ -1,14 +1,25 @@
 'use client';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { MdDashboard } from 'react-icons/md';
+import { RiListUnordered } from 'react-icons/ri';
 
 const AsideMenu = () => {
   //   const router = useRouter();
+  const pathname = usePathname();
   return (
     <ul className="">
       <li className="font-semibold lg:text-xl">
         <Link className="flex gap-2.5 items-center" href="/dashboard">
           <MdDashboard /> Dashboard
+        </Link>
+      </li>
+      <li className={` text-lg mt-5 ${pathname === '/dashboard/order' ? 'text-[#267D3E]' : ''}`}>
+        <Link href="/dashboard/orders">
+          <span className="flex items-center gap-2.5">
+            <RiListUnordered className="text-2xl" />
+            <span className="lg:text-lg">All Orders</span>
+          </span>
         </Link>
       </li>
     </ul>

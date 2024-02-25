@@ -67,3 +67,26 @@ export const imgData = [
     img: '/images/prod-img2.webp',
   },
 ];
+
+export const statusData = [
+  {
+    title: 'Pending',
+    value: 'PENDING',
+  },
+  {
+    title: 'Process',
+    value: 'PROCESS',
+  },
+  {
+    title: 'Shift',
+    value: 'SHIFT',
+  },
+  {
+    title: 'Delivered',
+    value: 'DELIVERED',
+  },
+  {
+    title: 'Cancelled',
+    value: 'CANCELLED',
+  },
+];
