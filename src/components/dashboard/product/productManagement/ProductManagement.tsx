@@ -4,7 +4,9 @@ import DashboardTableSearch from '@/components/core/searchInput/DashboardTableSe
 import { useState } from 'react';
 import { formatTimestamp } from '@/libs/convertDateFormat';
 import Image from 'next/legacy/image';
-import { useGetProductData } from '@/hooks/product.hooks';
+import { useDeleteProductData, useGetProductData } from '@/hooks/product.hooks';
+import Link from 'next/link';
+import ProductActions from './ProductActions';
 
 export const ProductDataColumn: DashboardTableColumn[] = [
   {
@@ -13,13 +15,15 @@ export const ProductDataColumn: DashboardTableColumn[] = [
     row: (data: any) => (
       <div className="flex items-center gap-4  text-14-medium">
         <div className=" ">
-          <Image
-            className="rounded-[8px] object-cover"
-            src={data?.product_image?.find((i: any) => i.is_feature)?.image || '#'}
-            alt="asd"
-            width={65}
-            height={65}
-          />
+          {data?.product_image?.length > 0 && (
+            <Image
+              className="rounded-[8px] object-cover"
+              src={data?.product_image?.find((i: any) => i.is_feature)?.image || '#'}
+              alt="asd"
+              width={65}
+              height={65}
+            />
+          )}
         </div>
         <div className="space-y-2">
           <p className="text-sm font-medium">{data?.title || ''}</p>
@@ -64,18 +68,15 @@ export const ProductDataColumn: DashboardTableColumn[] = [
   },
 ];
 
-const Action = () => {
-  //   const { mutateAsync: handleEdit, isLoading: isDataEditing } = useUpdateCategoryData(data.id);
-  //   const { mutateAsync: handleDelete, isLoading: isDataDeleting } = useDeleteCategoryData(data.id);
+const Action = ({ data }: { data: any }) => {
+  const { mutateAsync: handleDelete, isLoading: isDataDeleting } = useDeleteProductData(data.id);
   return (
     <div>
-      {/* <CategoryActions
-        handleEdit={handleEdit}
-        isDataEditing={isDataEditing}
+      <ProductActions
         isDataDeleting={isDataDeleting}
         handleDeleteFun={handleDelete}
         instance={data}
-      /> */}
+      />
     </div>
   );
 };
@@ -85,9 +86,9 @@ const _col = [
   {
     title: 'Action',
     dataKey: 'action',
-    row: () => (
+    row: (data: any) => (
       <div className="flex justify-end">
-        <Action />
+        <Action data={data} />
       </div>
     ),
   },
@@ -97,11 +98,17 @@ const _col = [
 const ProductManagement = () => {
   const [searchValue, setSearchValue] = useState('');
   const { data, isLoading } = useGetProductData(searchValue);
+
   return (
     <div className="space-y-10">
       <div className="flex items-center justify-between">
         <DashboardTableSearch setSearchValue={setSearchValue} />
-        {/* <CategoryForm handleDataSubmit={mutateAsync} isDataSubmiting={isDataSubmiting} /> */}
+        <Link
+          href={'/dashboard/product/add-product'}
+          className="disabled:bg-slate-500 px-4 rounded-md mt-3 gap-1 py-2 bg-[#C2A466] text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4 xl:mt-5"
+        >
+          Add New
+        </Link>
       </div>
       <div>
         <div>

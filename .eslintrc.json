@@ -20,7 +20,8 @@
       "error",
       {
         "js": "ignorePackages",
-        "ts": "never"
+        "ts": "never",
+        "css": "ignoreFiles"
       }
     ],
     "import/no-extraneous-dependencies": 0,

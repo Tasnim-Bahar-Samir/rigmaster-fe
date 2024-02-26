@@ -1,7 +1,13 @@
+'use client';
+import AddProductContainer from '@/components/dashboard/product/productManagement/add/AddProductContainer';
 import React from 'react';
 
-const page = () => {
-  return <div>page</div>;
+const AddProductPage = () => {
+  return (
+    <div>
+      <AddProductContainer />
+    </div>
+  );
 };
 
-export default page;
+export default AddProductPage;

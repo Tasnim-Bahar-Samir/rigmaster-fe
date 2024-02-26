@@ -16,7 +16,7 @@ export const orderItem = (_obj: any = []) => {
       product: product,
       quantity: quantity,
       others_info: {
-        product_size_variant: {
+        product_size_varient: {
           size_title: i.sizeTitle,
           quantity: i.stockQuantity,
         },

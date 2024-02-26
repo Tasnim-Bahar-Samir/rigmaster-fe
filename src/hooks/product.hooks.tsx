@@ -1,17 +1,8 @@
 import axiousResuest from '@/libs/axiosRequest';
+import { useMutation } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
-
-export type TeamMemberResponseType = {
-  id: string;
-  avatar: string;
-  name: string;
-  designation: string;
-  fb_url: string;
-  linkedin_url: string;
-  insta_url: string;
-  status: string;
-  created_at: string;
-};
+import { useSession } from 'next-auth/react';
 
 export const useGetProductData = (search = '') => {
   return useQuery({
@@ -24,57 +15,57 @@ export const useGetProductData = (search = '') => {
   });
 };
 
-// export const useAddTeamMemberData = () => {
-//   const queryClient = useQueryClient();
-//   const { data: session }: any = useSession();
+export const useAddProductData = () => {
+  const queryClient = useQueryClient();
+  const { data: session }: any = useSession();
 
-//   return useMutation({
-//     mutationFn: async (body: any) =>
-//       await axiousResuest({
-//         url: `/team/member/`,
-//         method: 'post',
-//         data: body,
-//         headers: {
-//           Authorization: `Bearer ${session?.accessToken}`,
-//         },
-//       }),
-//     onSuccess: () => queryClient.invalidateQueries(['member']),
-//   });
-// };
+  return useMutation({
+    mutationFn: async (body: any) =>
+      await axiousResuest({
+        url: `/product/management/`,
+        method: 'post',
+        data: body,
+        headers: {
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+      }),
+    onSuccess: () => queryClient.invalidateQueries(['product']),
+  });
+};
 
-// export const useUpdateTeamMember = (id: string) => {
-//   const queryClient = useQueryClient();
-//   const { data: session }: any = useSession();
-//   return useMutation({
-//     mutationFn: async (body: any) =>
-//       await axiousResuest({
-//         url: `/team/member/${id}/`,
-//         method: 'patch',
-//         data: body,
-//         headers: {
-//           Authorization: `Bearer ${session.accessToken}`,
-//         },
-//       }),
-//     onSuccess: () => {
-//       queryClient.invalidateQueries({ queryKey: ['member'] });
-//     },
-//   });
-// };
+export const useUpdateProductData = (id: string) => {
+  const queryClient = useQueryClient();
+  const { data: session }: any = useSession();
+  return useMutation({
+    mutationFn: async (body: any) =>
+      await axiousResuest({
+        url: `/product/management/${id}/`,
+        method: 'patch',
+        data: body,
+        headers: {
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['product'] });
+    },
+  });
+};
 
-// export const useDeleteTeamMember = (id: string) => {
-//   const queryClient = useQueryClient();
-//   const { data: session }: any = useSession();
-//   return useMutation({
-//     mutationFn: async () =>
-//       await axiousResuest({
-//         url: `/team/member/${id}/`,
-//         method: 'delete',
-//         headers: {
-//           Authorization: `Bearer ${session.accessToken}`,
-//         },
-//       }),
-//     onSuccess: () => {
-//       queryClient.invalidateQueries({ queryKey: ['member'] });
-//     },
-//   });
-// };
+export const useDeleteProductData = (id: string) => {
+  const queryClient = useQueryClient();
+  const { data: session }: any = useSession();
+  return useMutation({
+    mutationFn: async () =>
+      await axiousResuest({
+        url: `/product/management/${id}/`,
+        method: 'delete',
+        headers: {
+          Authorization: `Bearer ${session.accessToken}`,
+        },
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['product'] });
+    },
+  });
+};
