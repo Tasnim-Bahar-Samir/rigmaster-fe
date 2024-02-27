@@ -7,4 +7,5 @@ export type CartDataType = {
   stockQuantity: number;
   thumbnail: string;
   title: string;
+  color: string;
 };

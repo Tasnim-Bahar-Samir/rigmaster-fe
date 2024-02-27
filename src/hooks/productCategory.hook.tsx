@@ -12,12 +12,12 @@ export type CategoryResponseType = {
   slug: string;
 };
 
-export const useGetCategoryData = (search = '') => {
+export const useGetCategoryData = (search = '', limit = 25, offset = 0) => {
   return useQuery({
-    queryKey: ['product_category', search],
+    queryKey: ['product_category', search, limit, offset],
     queryFn: () =>
       axiousResuest({
-        url: `/product/category/?search=${search}`,
+        url: `/product/category/?search=${search}&limit=${limit}&offset=${offset}`,
         method: 'get',
       }),
   });

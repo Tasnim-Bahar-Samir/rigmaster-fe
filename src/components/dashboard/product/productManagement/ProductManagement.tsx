@@ -4,9 +4,10 @@ import DashboardTableSearch from '@/components/core/searchInput/DashboardTableSe
 import { useState } from 'react';
 import { formatTimestamp } from '@/libs/convertDateFormat';
 import Image from 'next/legacy/image';
-import { useDeleteProductData, useGetProductData } from '@/hooks/product.hooks';
+import { useDeleteProductData, useGetDashProductData } from '@/hooks/product.hooks';
 import Link from 'next/link';
 import ProductActions from './ProductActions';
+import DashboardPagination from '@/components/core/pagination/DashboardPagination';
 
 export const ProductDataColumn: DashboardTableColumn[] = [
   {
@@ -97,8 +98,17 @@ const _col = [
 //default component
 const ProductManagement = () => {
   const [searchValue, setSearchValue] = useState('');
-  const { data, isLoading } = useGetProductData(searchValue);
-
+  const [currentPage, setCurrentPage] = useState(1);
+  let dataPerpage = 20;
+  let offset;
+  if (searchValue) {
+    offset = 0;
+  } else {
+    offset = (currentPage - 1) * dataPerpage;
+  }
+  const { data, isLoading } = useGetDashProductData(searchValue, dataPerpage, offset);
+  const totalData = data?.count;
+  const pageCount = Math.ceil(totalData / dataPerpage);
   return (
     <div className="space-y-10">
       <div className="flex items-center justify-between">
@@ -113,6 +123,13 @@ const ProductManagement = () => {
       <div>
         <div>
           <DashboardTable columns={_col} isLoading={isLoading} data={data?.results || []} />
+        </div>
+        <div className="flex justify-end mt-4">
+          <DashboardPagination
+            count={pageCount}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
       </div>
     </div>

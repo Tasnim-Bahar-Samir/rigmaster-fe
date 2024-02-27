@@ -3,13 +3,30 @@ import { useMutation } from '@tanstack/react-query';
 import { useQueryClient } from '@tanstack/react-query';
 import { useQuery } from '@tanstack/react-query';
 import { useSession } from 'next-auth/react';
+import { useSearchParams } from 'next/navigation';
 
-export const useGetProductData = (search = '') => {
+export const useGetProductData = (
+  search = '',
+  category = '',
+  dataPerpage: number,
+  offset: number,
+) => {
+  const params = useSearchParams().toString();
+  return useQuery({
+    queryKey: ['product', search, category, params, dataPerpage, offset],
+    queryFn: () =>
+      axiousResuest({
+        url: `/product/management/?${params}&category__slug__in=${category}&limit=${dataPerpage}&offset=${offset}`,
+        method: 'get',
+      }),
+  });
+};
+export const useGetDashProductData = (search = '', dataPerpage: number, offset: number) => {
   return useQuery({
     queryKey: ['product', search],
     queryFn: () =>
       axiousResuest({
-        url: `/product/management/?search=${search}`,
+        url: `/product/management/?search=${search}&limit=${dataPerpage}&offset=${offset}`,
         method: 'get',
       }),
   });

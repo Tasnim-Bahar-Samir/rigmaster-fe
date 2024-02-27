@@ -1,10 +1,13 @@
 import ShopPage from '@/components/pages/shop/Shop.page';
-import React from 'react';
+import React, { FC } from 'react';
 
-const ProductPage = () => {
+type ProductPageProps = {
+  params: { slug: string };
+};
+const ProductPage: FC<ProductPageProps> = ({ params }) => {
   return (
     <div>
-      <ShopPage />
+      <ShopPage category={params.slug} />
     </div>
   );
 };

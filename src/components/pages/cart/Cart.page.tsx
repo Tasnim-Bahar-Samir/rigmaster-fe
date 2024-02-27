@@ -22,8 +22,9 @@ const TableRow: FC<TableRowProps> = ({ instance }) => {
         <div className="max-w-[150px]">
           <h5 className="font-medium mt-2  lg:mt-0 text-sm ">
             {instance.title}
-            <span className={`text-sm font-normal`}>-{instance.sizeTitle} Lorem, ipsum dolor.</span>
+            <span className={`text-sm font-normal`}>-{instance.sizeTitle}</span>
           </h5>
+          <span className={`text-sm font-normal`}>{instance.color}</span>
           <p className="text-[#8C8C8C] text-[10px] md:text-sm md:text-[16px]">
             <span className="md:hidden">/{instance.price}৳</span>
           </p>

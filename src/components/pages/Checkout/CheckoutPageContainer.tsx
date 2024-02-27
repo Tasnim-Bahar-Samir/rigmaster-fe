@@ -122,7 +122,7 @@ const CheckoutPageContainer: FC<CheckoutPageContainerProps> = ({
                   {products.map((i: CartDataType) => (
                     <div className="flex items-center justify-between" key={Math.random()}>
                       <p className="text-sm">
-                        {i.title}-{i.sizeTitle} x {i.quantity} ৳{i.price}
+                        {i.title}-{i.sizeTitle}-{i.color} x {i.quantity} ৳{i.price}
                       </p>{' '}
                       <p className="">৳{i.price * i.quantity}</p>
                     </div>

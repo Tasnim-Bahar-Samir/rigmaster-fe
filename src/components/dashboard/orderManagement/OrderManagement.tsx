@@ -1,11 +1,11 @@
 'use client';
 import DashboardTable, { DashboardTableColumn } from '@/components/core/table/DashboardTable';
-import DashboardTableSearch from '@/components/core/searchInput/DashboardTableSearch';
 import { useState } from 'react';
 import { useDeleteOrder, useGetOrderData, useUpdateOrderData } from '@/hooks/order.hooks';
 import { dateWithTimeFormat } from '@/libs/convertDateFormat';
 import OrderActions from './OrderActions';
 import { statusData } from '@/data/dummy.data';
+import DashboardPagination from '@/components/core/pagination/DashboardPagination';
 
 export const OrderDataColumn: DashboardTableColumn[] = [
   {
@@ -82,13 +82,21 @@ const _col = [
 
 //default component
 const OrderManagement = () => {
-  const [searchValue, setSearchValue] = useState('');
   const [status, setStatus] = useState('');
-  const { data, isLoading } = useGetOrderData(searchValue, status);
+  const [currentPage, setCurrentPage] = useState(1);
+  let dataPerpage = 20;
+  let offset;
+  if (status) {
+    offset = 0;
+  } else {
+    offset = (currentPage - 1) * dataPerpage;
+  }
+  const { data, isLoading } = useGetOrderData(status, dataPerpage, offset);
+  const totalData = data?.count;
+  const pageCount = Math.ceil(totalData / dataPerpage);
   return (
     <div className="space-y-10">
       <div className="flex items-center justify-between">
-        <DashboardTableSearch setSearchValue={setSearchValue} />
         <div className="w-fit px-4 border rounded-lg">
           <select
             value={status}
@@ -107,6 +115,13 @@ const OrderManagement = () => {
       <div>
         <div>
           <DashboardTable columns={_col} isLoading={isLoading} data={data?.results || []} />
+        </div>
+        <div className="flex justify-end mt-4">
+          <DashboardPagination
+            count={pageCount}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
         </div>
       </div>
     </div>

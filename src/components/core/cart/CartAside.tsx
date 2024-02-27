@@ -43,6 +43,9 @@ const CartAside = () => {
                         {i.title}- <span className="uppercase">{i.sizeTitle}</span>
                       </h5>
                       <p className="text-sm">
+                        Color: <span className="text-slate-500">{i.color}</span>
+                      </p>
+                      <p className="text-sm">
                         Qty: <span className="text-slate-500">{i.quantity}</span>
                       </p>
                       <p className="text-sm text-[#C2A466]">৳ {i.price}</p>

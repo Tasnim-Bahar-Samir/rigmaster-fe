@@ -5,13 +5,22 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
-  const { id, product_image, title, category, product_size_varient, price, meta_description } =
-    productDetails;
+  const {
+    id,
+    product_image,
+    title,
+    category,
+    color,
+    product_size_varient,
+    price,
+    meta_description,
+  } = productDetails;
   const [size, setSize] = useState<any>('');
   const [img, setImg] = useState(productDetails?.product_image?.find((i: any) => i.is_feature));
   const [error, setError] = useState('');
   const [quantity, setQuantity] = useState(1);
   const { push } = useRouter();
+
   const {
     cartOpen,
     setCartOpen,
@@ -34,7 +43,7 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
       price: price,
       stockQuantity: size?.quantity,
       sizeTitle: size?.size?.size_title,
-
+      color: color,
       quantity: quantity,
     };
     setDerectByProduct([productData]);
@@ -52,7 +61,7 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
       price: price,
       stockQuantity: size?.quantity,
       sizeTitle: size?.size?.size_title,
-
+      color: color,
       quantity: quantity,
     };
     const alreadyExist = products.find((prod: any) => prod.id === size?.id);
@@ -117,6 +126,10 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
           </div>
           <div className="text-xs xl:text-sm">{meta_description}</div>
           <div className="space-y-2 xl:space-y-4">
+            <div className="flex items-center gap-2">
+              <p className="font-medium">Color:</p>
+              <p className="capitalize">{color}</p>
+            </div>
             <h5 className="font-medium md:text-lg xl:text-xl">Select Size</h5>
             <div className="flex items-center flex-wrap gap-3 xl:gap-4">
               {product_size_varient?.map((i: any) => (
@@ -126,7 +139,7 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
                     setSize(i);
                   }}
                   key={Math.random()}
-                  className={`${size == i ? 'border-black' : ''} p-2 border text-sm xl:p-4`}
+                  className={`${size == i ? 'border-black' : ''} uppercase p-2 border text-sm xl:p-4`}
                 >
                   {i.size.size_title}
                 </button>

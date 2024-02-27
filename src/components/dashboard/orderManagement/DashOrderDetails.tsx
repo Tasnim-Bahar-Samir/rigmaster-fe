@@ -1,5 +1,6 @@
 import { getOrderSubtotal } from '@/libs/getOrderSubtotal';
 import { Dialog, MenuItem } from '@mui/material';
+import Image from 'next/legacy/image';
 import { FC, useState } from 'react';
 
 type DashOrderDetailsProps = {
@@ -52,10 +53,19 @@ const DashOrderDetails: FC<DashOrderDetailsProps> = ({ orderDetails, setAnchorEl
               <div className="space-y-3 py-3 border-b">
                 {orderDetails?.purchase_order?.map((i: any) => (
                   <div className="flex items-center justify-between" key={Math.random()}>
-                    <p className="text-sm font-medium flex items-center gap-4">
-                      {i?.product?.title}-{i?.others_info?.product_size_varient?.size_title}{' '}
-                      <span>x</span> <span>{i.quantity}</span> <span>৳{i?.product?.price}</span>
-                    </p>{' '}
+                    <div className="relative flex items-center gap-3">
+                      <Image
+                        src={i?.product?.product_image?.[0].image}
+                        width={36}
+                        height={40}
+                        alt="product_image"
+                      />
+                      <p className="text-sm font-medium flex items-center gap-4">
+                        {i?.product?.title}-{i?.others_info?.product_size_varient?.size_title}-
+                        {i?.product?.color}
+                        <span>x</span> <span>{i.quantity}</span> <span>৳{i?.product?.price}</span>
+                      </p>{' '}
+                    </div>
                     <p className="">৳{i.quantity * i?.product?.price}</p>
                   </div>
                 ))}

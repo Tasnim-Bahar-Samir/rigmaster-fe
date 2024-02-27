@@ -22,8 +22,8 @@ const ProductList: FC<ProductListType> = ({ isLoading, productData }) => {
             <ProductCard
               key={Math.random()}
               price={i.price}
-              thumbnail={i?.product_image?.find((i: any) => i.is_feature).image}
-              alterThumbnail={i?.product_image?.filter((i: any) => !i.is_feature)?.[0].image}
+              thumbnail={i?.product_image?.find((i: any) => i.is_feature)?.image}
+              alterThumbnail={i?.product_image?.filter((i: any) => !i.is_feature)?.[0]?.image}
               slug={i.slug}
               title={i.title}
             />
