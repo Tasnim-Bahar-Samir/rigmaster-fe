@@ -56,7 +56,7 @@ const TopCategories: FC<TopCategoriesProps> = ({ categoryData, isLoading }) => {
       >
         <>
           {!isLoading && categoryData?.length === 0 ? (
-            <p className="text-16-semibold text-center py-4">No Team Member Available</p>
+            <p className="text-16-semibold text-center py-4">No Category Available</p>
           ) : (
             <>
               {isLoading

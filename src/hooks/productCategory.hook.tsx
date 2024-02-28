@@ -17,7 +17,7 @@ export const useGetCategoryData = (search = '', limit = 25, offset = 0) => {
     queryKey: ['product_category', search, limit, offset],
     queryFn: () =>
       axiousResuest({
-        url: `/product/category/?search=${search}&limit=${limit}&offset=${offset}`,
+        url: `/product/category/?ordering=-priority&search=${search}&limit=${limit}&offset=${offset}`,
         method: 'get',
       }),
   });

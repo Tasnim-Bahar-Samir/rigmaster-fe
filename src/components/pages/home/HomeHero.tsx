@@ -48,7 +48,7 @@ const HomeHero = () => {
             <Link href={`/product-category/eid-collection`} className="relative">
               <Image
                 priority
-                src={'/images/banner-images/bannerimg-1.webp'}
+                src={'/images/banner-images/img1.jpg'}
                 width={1920}
                 height={1000}
                 alt="banner-img"
@@ -61,7 +61,7 @@ const HomeHero = () => {
             <Link href={`/product-category/eid-collection`} className="relative">
               <Image
                 priority
-                src={'/images/homeImages/home-img1.webp'}
+                src={'/images/banner-images/img2.jpg'}
                 width={1920}
                 height={1000}
                 alt="banner-img"
@@ -74,7 +74,7 @@ const HomeHero = () => {
             <Link href={`/product-category/eid-collection`} className="relative">
               <Image
                 priority
-                src={'/images/banner-images/bannerimg-1.webp'}
+                src={'/images/banner-images/img3.jpg'}
                 width={1920}
                 height={1000}
                 alt="banner-img"

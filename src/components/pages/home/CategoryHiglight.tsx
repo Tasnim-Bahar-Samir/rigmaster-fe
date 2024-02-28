@@ -8,7 +8,7 @@ const CategoryHiglight = () => {
       <Link href={`/product-category/eid-collections`}>
         <Image
           className="cursor-pointer"
-          src={'/images/homeImages/home-img1.webp'}
+          src={'/images/banner-images/img2.jpg'}
           width={1920}
           height={1000}
           alt="banner-img"

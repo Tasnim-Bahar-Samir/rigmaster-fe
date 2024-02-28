@@ -1,13 +1,24 @@
 'use client';
 import HomeHero from './HomeHero';
 import TopCategories from './TopCategories';
-import { eidProductData, productData } from '@/data/dummy.data';
 import CategoryWiseProducts from './CategoryWiseProducts';
-import repeatObject from '@/libs/repeatObjects';
 import CategoryHiglight from './CategoryHiglight';
 import { useGetCategoryData } from '@/hooks/productCategory.hook';
+import { useGetProductData } from '@/hooks/product.hooks';
 const HomePageContainer = () => {
   const { data: categoryData, isLoading: isCategoryLoading } = useGetCategoryData();
+  const { data: cate1ProductData, isLoading: isCate1ProductLoading } = useGetProductData(
+    '',
+    '',
+    10,
+    5,
+  );
+  const { data: cate2ProductData, isLoading: isCate2ProductLoading } = useGetProductData(
+    '',
+    '',
+    10,
+    5,
+  );
   return (
     <div>
       <div>
@@ -15,15 +26,15 @@ const HomePageContainer = () => {
         <div className="mt-10 space-y-10 md:space-y-16 md:mt-16 xl:space-y-20 xl:mt-20">
           <TopCategories isLoading={isCategoryLoading} categoryData={categoryData?.results} />
           <CategoryWiseProducts
-            title="Winter Collections"
-            isLoading={false}
-            productData={repeatObject(productData, 10)}
+            title="Eid Collections"
+            isLoading={isCate1ProductLoading}
+            productData={cate1ProductData?.results}
           />
           <CategoryHiglight />
           <CategoryWiseProducts
-            title="Eid Collections"
-            isLoading={false}
-            productData={repeatObject(eidProductData, 10)}
+            title="Luxury Punjabi"
+            isLoading={isCate2ProductLoading}
+            productData={cate2ProductData?.results}
           />
         </div>
       </div>

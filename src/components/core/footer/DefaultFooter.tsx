@@ -1,7 +1,6 @@
-import { nav_categoryData } from '@/data/dummy.data';
+import { CategoryResponseType, useGetCategoryData } from '@/hooks/productCategory.hook';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 import { FaFacebook, FaInstagram, FaPhone, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 
@@ -33,6 +32,7 @@ const SocialSection = () => {
 };
 
 const DefaultFooter = () => {
+  const { data, isLoading } = useGetCategoryData('', 5, 0);
   const year = new Date().getFullYear();
   return (
     <footer className="sticky rm-commonContainer w-full top-[100vh] pt-10 pb-5 xl:pt-20">
@@ -56,15 +56,19 @@ const DefaultFooter = () => {
         <div className="space-y-4 md:gap-y-5 xl:space-y-7">
           <h5 className="font-medium xl:text-lg">Categories</h5>
           <ul className="flex flex-col gap-3 text-sm xl:gap-4">
-            {nav_categoryData.map((i) => (
-              <Link
-                href={'/product-category/eid-collection'}
-                className="cursor-pointer hover:underline"
-                key={Math.random()}
-              >
-                {i}
-              </Link>
-            ))}
+            {isLoading
+              ? [...new Array(5)].map(() => (
+                  <p key={Math.random()} className="w-20 h-5 bg-slate-100"></p>
+                ))
+              : data?.results.map((i: CategoryResponseType) => (
+                  <Link
+                    href={`/product-category/${i.slug}`}
+                    className="cursor-pointer hover:underline"
+                    key={Math.random()}
+                  >
+                    {i.title}
+                  </Link>
+                ))}
           </ul>
         </div>
         <div className="space-y-4 md:gap-y-5 xl:space-y-7">
