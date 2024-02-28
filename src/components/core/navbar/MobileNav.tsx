@@ -1,14 +1,12 @@
 'use client';
 import { Drawer } from '@mui/material';
-import { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { SearchSection } from './DefaultNavbar';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
 import { useGetCategoryData } from '@/hooks/productCategory.hook';
 
-const MobileNav = () => {
-  const [open, setOpen] = useState(false);
+const MobileNav = ({ open, setOpen }: { open: boolean; setOpen: Function }) => {
   const { data, isLoading } = useGetCategoryData();
   return (
     <div>
@@ -35,7 +33,7 @@ const MobileNav = () => {
             </span>
           </div>
           <div className="mt-3">
-            <SearchSection />
+            <SearchSection setOpen={setOpen} />
             <ul className="flex mt-4 flex-col ">
               {isLoading
                 ? [...new Array(5)].map(() => (

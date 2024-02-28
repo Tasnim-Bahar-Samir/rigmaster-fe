@@ -7,6 +7,10 @@ const nextConfig = {
         hostname: 'placehold.co',
       },
       {
+        protocol: 'https',
+        hostname: 'api.rigmasteronline.com',
+      },
+      {
         protocol: 'http',
         hostname: '127.0.0.1',
       },

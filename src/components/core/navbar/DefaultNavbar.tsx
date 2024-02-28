@@ -7,7 +7,7 @@ import CartAside from '../cart/CartAside';
 import Image from 'next/legacy/image';
 import { useGetCategoryData } from '@/hooks/productCategory.hook';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 const CategoryMenu = () => {
   const { data, isLoading } = useGetCategoryData('', 10, 0);
@@ -24,7 +24,7 @@ const CategoryMenu = () => {
   );
 };
 
-export const SearchSection = () => {
+export const SearchSection = ({ setOpen }: { setOpen?: Function }) => {
   const pathname = usePathname();
   const { push } = useRouter();
   const searchParams = useSearchParams();
@@ -48,6 +48,7 @@ export const SearchSection = () => {
     <form
       onSubmit={async (e) => {
         e.preventDefault();
+        setOpen && setOpen(false);
         await push('/shop');
         handleSearch(e);
       }}
@@ -66,12 +67,13 @@ export const SearchSection = () => {
   );
 };
 const DefaultNavbar = () => {
+  const [open, setOpen] = useState(false);
   return (
     <nav className="sticky top-0 bg-white z-10">
       <div className="py-4 ">
         <div className="rm-commonContainer flex justify-between items-center lg:grid lg:grid-cols-3">
           <div className="lg:hidden">
-            <MobileNav />
+            <MobileNav open={open} setOpen={setOpen} />
           </div>
           <Link href={'/'}>
             <Image
@@ -83,7 +85,7 @@ const DefaultNavbar = () => {
             />
           </Link>
           <div className="items-center w-full gap-4 hidden lg:flex xl:gap-5">
-            <SearchSection />
+            <SearchSection setOpen={setOpen} />
           </div>
           <div className="flex justify-end items-center gap-4">
             <div>
