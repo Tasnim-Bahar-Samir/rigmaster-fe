@@ -11,13 +11,13 @@ const HomePageContainer = () => {
     '',
     '',
     10,
-    5,
+    0,
   );
   const { data: cate2ProductData, isLoading: isCate2ProductLoading } = useGetProductData(
     '',
     '',
     10,
-    5,
+    0,
   );
   return (
     <div>
