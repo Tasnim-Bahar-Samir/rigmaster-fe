@@ -3,6 +3,10 @@ import { Poppins } from 'next/font/google';
 import './globals.css';
 import { StyledEngineProvider } from '@mui/material';
 import ToasterProvider from '@/components/providers/ToasterProvider';
+import TanStackQueryProvider from '@/components/providers/TanStackQueryProvider';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/libs/auth/authOptions';
+import NextAuthProvider from '@/components/providers/NextAuthProvider';
 // import { SnackbarProvider } from 'notistack';
 
 const poppins = Poppins({
@@ -13,20 +17,32 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: 'Rigmaster',
   description: 'A clothing e-commerce.',
+  icons: '/favicon.ico',
+  openGraph: {
+    type: 'website',
+    url: '/',
+    siteName: 'Rigmaster',
+    // images: [
+    //   {
+    //     url: `https://the-yolo-studio.sgp1.cdn.digitaloceanspaces.com/tammlit.com/assets/tammlit_og.jpg`,
+    //   },
+    // ],
+  },
 };
 
-const RootLayout = ({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) => {
+const RootLayout = async ({ children }: { children: React.ReactNode }) => {
+  const session = await getServerSession(authOptions);
   return (
     <html lang="en">
-      <StyledEngineProvider injectFirst>
-        <ToasterProvider>
-          <body className={poppins.className}>{children}</body>
-        </ToasterProvider>
-      </StyledEngineProvider>
+      <body className={poppins.className}>
+        <StyledEngineProvider injectFirst>
+          <ToasterProvider>
+            <TanStackQueryProvider>
+              <NextAuthProvider session={session}>{children}</NextAuthProvider>
+            </TanStackQueryProvider>
+          </ToasterProvider>
+        </StyledEngineProvider>
+      </body>
     </html>
   );
 };

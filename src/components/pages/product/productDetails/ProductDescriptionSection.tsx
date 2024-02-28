@@ -1,7 +1,13 @@
 'use client';
-import React, { useState } from 'react';
-
-const ProductDescriptionSection = () => {
+import React, { FC, useState } from 'react';
+type ProductDescriptionSectionProps = {
+  desc: string;
+  additionalDesc: string;
+};
+const ProductDescriptionSection: FC<ProductDescriptionSectionProps> = ({
+  desc,
+  additionalDesc,
+}) => {
   const [active, setActive] = useState('desc');
   return (
     <div>
@@ -19,12 +25,15 @@ const ProductDescriptionSection = () => {
           Additional Details
         </span>
       </div>
-      <div className="mt-5 text-xs xl:text-sm">
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ex, perferendis cum ullam eveniet
-        distinctio suscipit deleniti earum aperiam doloribus aspernatur libero vel alias voluptas
-        dolore! Sapiente saepe architecto fugit eligendi reprehenderit quod atque quidem, minus
-        dolorum nesciunt aperiam ullam deserunt distinctio aspernatur eveniet similique blanditiis
-        fuga delectus. Nostrum, beatae quis!
+      <div className="mt-5 text-xs px-3 xl:text-sm">
+        {active == 'desc' && (
+          <p dangerouslySetInnerHTML={{ __html: desc ? desc : 'Not Provided' }}></p>
+        )}
+        {active == 'additional' && (
+          <p
+            dangerouslySetInnerHTML={{ __html: additionalDesc ? additionalDesc : 'Not Provided' }}
+          ></p>
+        )}
       </div>
     </div>
   );

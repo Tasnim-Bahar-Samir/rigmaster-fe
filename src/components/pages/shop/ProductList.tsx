@@ -1,11 +1,10 @@
 import { ProductLoadingCard } from '@/components/core/cards/LoadingCards';
 import ProductCard from '@/components/core/cards/ProductCard';
-import { ProductDataType } from '@/type/product.type';
 import { FC } from 'react';
 
 type ProductListType = {
   isLoading: boolean;
-  productData: ProductDataType[];
+  productData: any[];
 };
 
 const ProductList: FC<ProductListType> = ({ isLoading, productData }) => {
@@ -19,11 +18,12 @@ const ProductList: FC<ProductListType> = ({ isLoading, productData }) => {
         </div>
       ) : productData?.length > 0 ? (
         <div className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:gap-5 xl:grid-cols-4 xl:gap-6">
-          {productData.map((i: ProductDataType) => (
+          {productData.map((i: any) => (
             <ProductCard
               key={Math.random()}
               price={i.price}
-              thumbnail={i.thumbnail}
+              thumbnail={i?.product_image?.find((i: any) => i.is_feature)?.image}
+              alterThumbnail={i?.product_image?.filter((i: any) => !i.is_feature)?.[0]?.image}
               slug={i.slug}
               title={i.title}
             />

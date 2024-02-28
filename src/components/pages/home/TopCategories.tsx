@@ -11,7 +11,7 @@ import { CategoryLoadingCard } from '@/components/core/cards/LoadingCards';
 
 type TopCategoriesProps = {
   isLoading: boolean;
-  categoryData: { img: string; title: string }[];
+  categoryData: { img: string; title: string; slug: string }[];
 };
 const TopCategories: FC<TopCategoriesProps> = ({ categoryData, isLoading }) => {
   return (
@@ -66,10 +66,10 @@ const TopCategories: FC<TopCategoriesProps> = ({ categoryData, isLoading }) => {
                     </SwiperSlide>
                   ))
                 : !isLoading &&
-                  categoryData?.map((i: { img: string; title: string }) => (
+                  categoryData?.map((i: { img: string; title: string; slug: string }) => (
                     <SwiperSlide className="" key={Math.random()}>
                       <div>
-                        <CategoryCard img={i.img} title={i.title} slug="eid-collection" />
+                        <CategoryCard img={i.img} title={i.title} slug={i.slug} />
                       </div>
                     </SwiperSlide>
                   ))}

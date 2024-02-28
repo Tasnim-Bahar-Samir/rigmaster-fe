@@ -3,12 +3,13 @@ import { Drawer } from '@mui/material';
 import { useState } from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { SearchSection } from './DefaultNavbar';
-import { nav_categoryData } from '@/data/dummy.data';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
+import { useGetCategoryData } from '@/hooks/productCategory.hook';
 
 const MobileNav = () => {
   const [open, setOpen] = useState(false);
+  const { data, isLoading } = useGetCategoryData();
   return (
     <div>
       <div className="lg:hidden">
@@ -36,15 +37,19 @@ const MobileNav = () => {
           <div className="mt-3">
             <SearchSection />
             <ul className="flex mt-4 flex-col ">
-              {nav_categoryData.map((i) => (
-                <Link
-                  href={'/product-category/eid-collection'}
-                  className="py-3 inline-block border-b"
-                  key={Math.random()}
-                >
-                  {i}
-                </Link>
-              ))}
+              {isLoading
+                ? [...new Array(5)].map(() => (
+                    <p key={Math.random()} className="h-4 bg-slate-200 w-4/5"></p>
+                  ))
+                : data?.results?.map((i: any) => (
+                    <Link
+                      href={`/product-category/${i?.slug}`}
+                      className="py-3 inline-block border-b"
+                      key={Math.random()}
+                    >
+                      {i?.title}
+                    </Link>
+                  ))}
             </ul>
           </div>
           {/* <div className="flex justify-between items-center mt-12">

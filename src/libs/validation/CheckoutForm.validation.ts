@@ -13,6 +13,6 @@ export const checkoutFormValidation = () =>
       .required('Phone number is required'),
     // division: yup.string().required("Division is required"),
     // district: yup.string().required("District is required"),
-    address: yup.string().required('Address is required'),
+    address: yup.string(),
     email: yup.string().email(),
   });

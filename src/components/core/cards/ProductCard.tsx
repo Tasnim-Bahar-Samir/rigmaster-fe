@@ -1,22 +1,33 @@
+'use client';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 
 type ProductCardProps = {
   thumbnail: string;
   title: string;
   price: string;
   slug: string;
+  alterThumbnail?: string;
 };
 
-const ProductCard: FC<ProductCardProps> = ({ thumbnail, title, price, slug }) => {
+const ProductCard: FC<ProductCardProps> = ({
+  thumbnail,
+  alterThumbnail = '',
+  title,
+  price,
+  slug,
+}) => {
+  const [open, setopen] = useState(false);
   return (
     <div className="w-fit">
       <div>
-        <Link href={`/product/${slug}`} className="relative">
+        <Link href={`/product/${slug}`} className="relative bg-slate-100">
           <Image
-            className=""
-            src={thumbnail}
+            onMouseOver={() => setopen(true)}
+            onMouseOut={() => setopen(false)}
+            className="transition-all"
+            src={alterThumbnail ? (open ? alterThumbnail : thumbnail) : thumbnail}
             width={298}
             height={398}
             alt="category_img"
