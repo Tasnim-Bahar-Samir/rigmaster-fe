@@ -17,11 +17,12 @@ const Invoice: FC<InvoiceProps> = ({ orderDetails }) => {
     <div>
       <MenuItem onClick={handlePrint}>Invoice</MenuItem>
       <div ref={componentRef} className="p-5 hidden print:block">
+        <Image priority src={'/images/logos/logo2.webp'} width={120} height={30} alt="RIGMASTER" />
         <div>
           <div className="space-y-2 mt-3">
             <p className="flex items-center gap-2">
               Order Number:{' '}
-              <span className="text-sm font-medium xl:text-[16px]">#{orderDetails?.id}</span>
+              <span className="text-sm font-medium xl:text-[16px]">#{orderDetails?.order_id}</span>
             </p>
             <p className="flex items-center gap-2">
               Payment Method:{' '}

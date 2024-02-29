@@ -11,7 +11,7 @@ const OrderCompletePageContainer = ({ orderDetails }: { orderDetails: any }) => 
         <div className="space-y-2 mt-3">
           <p className="flex items-center gap-2">
             Order Number:{' '}
-            <span className="text-sm font-medium xl:text-[16px]">#{orderDetails?.id}</span>
+            <span className="text-sm font-medium xl:text-[16px]">#{orderDetails?.order_id}</span>
           </p>
           <p className="flex items-center gap-2">
             Payment Method:{' '}
