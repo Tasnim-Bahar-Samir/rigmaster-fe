@@ -63,7 +63,11 @@ const CategoryActions: FC<OrderActionsProps> = ({
           handleDataSubmit={handleEdit}
           isDataSubmiting={isDataEditing}
         />
-        <DeleteActionModal handleDeleteSubmit={handleDeleteFun} isLoading={isDataDeleting} />
+        <DeleteActionModal
+          setAnchorEl={setAnchorEl}
+          handleDeleteSubmit={handleDeleteFun}
+          isLoading={isDataDeleting}
+        />
       </Menu>
     </div>
   );

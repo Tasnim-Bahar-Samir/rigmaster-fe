@@ -4,6 +4,7 @@ import { BsThreeDots } from 'react-icons/bs';
 import DashOrderDetails from './DashOrderDetails';
 import OrderForm from './OrderForm';
 import DeleteActionModal from '@/components/core/DeleteActionModal';
+import Invoice from './Invioce';
 
 type OrderActionsProps = {
   handleDeleteFun: Function;
@@ -64,7 +65,12 @@ const OrderActions: FC<OrderActionsProps> = ({
           isDataSubmiting={isDataEditing}
         />
         <DashOrderDetails setAnchorEl={setAnchorEl} orderDetails={instance} />
-        <DeleteActionModal handleDeleteSubmit={handleDeleteFun} isLoading={isDataDeleting} />
+        <Invoice orderDetails={instance} />
+        <DeleteActionModal
+          setAnchorEl={setAnchorEl}
+          handleDeleteSubmit={handleDeleteFun}
+          isLoading={isDataDeleting}
+        />
       </Menu>
     </div>
   );

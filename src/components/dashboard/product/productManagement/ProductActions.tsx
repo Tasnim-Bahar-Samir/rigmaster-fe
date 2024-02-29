@@ -50,7 +50,11 @@ const ProductActions: FC<ProductActionsProps> = ({ instance, handleDeleteFun, is
         // TransitionComponent={Fade}
       >
         <ProductEdit instance={instance} setAnchorEl={setAnchorEl} />
-        <DeleteActionModal handleDeleteSubmit={handleDeleteFun} isLoading={isDataDeleting} />
+        <DeleteActionModal
+          setAnchorEl={setAnchorEl}
+          handleDeleteSubmit={handleDeleteFun}
+          isLoading={isDataDeleting}
+        />
       </Menu>
     </div>
   );

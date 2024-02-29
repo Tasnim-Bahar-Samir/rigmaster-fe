@@ -18,6 +18,7 @@ const CategoryCard: FC<CategoryCardType> = ({ title, img, slug }) => {
           width={180}
           height={200}
           alt="category_img"
+          layout="responsive"
           objectFit="cover"
         />
       </div>

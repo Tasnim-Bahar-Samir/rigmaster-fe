@@ -42,11 +42,12 @@ const CheckoutPageContainer: FC<CheckoutPageContainerProps> = ({
           purchase_order: orderItem(products),
           billing_address: billingInfo,
         };
+
         const res = await handleDataSubmit(codOrderData);
         resetForm();
-        push(`/checkout/success/${res.id}`);
         deleteCookie('addedProducts');
         setPrevCookies([]);
+        push(`/checkout/success/${res.id}`);
       } catch (err: any) {
         for (let key of err.errors) {
           enqueueSnackbar(`${key?.attr} - ${key?.detail}`, {

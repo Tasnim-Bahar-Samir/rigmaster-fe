@@ -6,11 +6,13 @@ type DeleteActionProps = {
   handleDeleteSubmit: Function;
   isLoading: boolean;
   isOnlyIcon?: boolean;
+  setAnchorEl: Function;
 };
 const DeleteActionModal: FC<DeleteActionProps> = ({
   handleDeleteSubmit,
   revalidateFun,
   isLoading,
+  setAnchorEl,
 }) => {
   const [open, setOpen] = useState(false);
   const handleDelete = async () => {
@@ -25,6 +27,7 @@ const DeleteActionModal: FC<DeleteActionProps> = ({
         variant: 'success',
       });
       setOpen(!open);
+      setAnchorEl(null);
     } catch (error) {
       enqueueSnackbar(`${error}`, {
         variant: 'error',

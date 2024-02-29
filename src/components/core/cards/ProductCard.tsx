@@ -20,7 +20,7 @@ const ProductCard: FC<ProductCardProps> = ({
 }) => {
   const [open, setopen] = useState(false);
   return (
-    <div className="w-fit">
+    <div className="">
       <div>
         <Link href={`/product/${slug}`} className="relative bg-slate-100">
           <Image
@@ -31,6 +31,7 @@ const ProductCard: FC<ProductCardProps> = ({
             width={298}
             height={398}
             alt="category_img"
+            layout="responsive"
             objectFit="cover"
           />
         </Link>
@@ -38,7 +39,7 @@ const ProductCard: FC<ProductCardProps> = ({
           <Link href={`/product/${slug}`}>
             <p className="xl:text-lg font-medium">{title}</p>
           </Link>
-          <p className="text-[#C2A466] xl:text-lg font-medium">৳ {price}</p>
+          <p className="text-[#C2A466] xl:text-lg font-medium">৳ {price}.00</p>
         </div>
       </div>
     </div>

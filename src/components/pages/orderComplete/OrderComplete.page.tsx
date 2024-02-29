@@ -1,4 +1,4 @@
-import React from 'react';
+'use client';
 import OrderCompletePageContainer from './OrderCompletePageContainer';
 
 const OrderCompletePage = ({ orderDetails }: { orderDetails: any }) => {

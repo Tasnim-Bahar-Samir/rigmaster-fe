@@ -20,6 +20,7 @@ const SizeForm: FC<SizeFormProps> = ({
   const { handleChange, values, touched, errors, handleSubmit, resetForm } = useFormik({
     initialValues: {
       size_title: instance?.size_title || '',
+      size_details: instance?.size_details || '',
     },
     validationSchema: sizeFormValidation,
     onSubmit: async (data: any) => {
@@ -74,6 +75,21 @@ const SizeForm: FC<SizeFormProps> = ({
               name="size_title"
               onChange={handleChange}
               label="Size Title"
+            />
+            <TextField
+              rows={3}
+              multiline
+              value={values.size_details}
+              error={touched.size_details && Boolean(errors.size_details)}
+              helperText={
+                touched.size_details && typeof errors.size_details === 'string'
+                  ? errors.size_details
+                  : ''
+              }
+              className="w-full"
+              name="size_details"
+              onChange={handleChange}
+              label="Size Details"
             />
             <div className="flex mt-4 items-center gap-2">
               <button

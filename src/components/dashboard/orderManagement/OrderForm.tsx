@@ -11,9 +11,13 @@ type OrderFormProps = {
 };
 const OrderForm: FC<OrderFormProps> = ({ handleDataSubmit, isDataSubmiting, instance }) => {
   const [open, setOpen] = useState(false);
-  const { setFieldValue, values, touched, errors, handleSubmit } = useFormik({
+  const { setFieldValue, values, touched, errors, handleSubmit, handleChange } = useFormik({
     initialValues: {
       status: instance?.status || '',
+      name: instance?.billing_address?.name || '',
+      phone: instance?.billing_address?.phone || '',
+      email: instance?.billing_address?.email || '',
+      address: instance?.billing_address?.address || '',
     },
     // validationSchema: contactFormValidation,
     onSubmit: async (data: any) => {
@@ -60,6 +64,55 @@ const OrderForm: FC<OrderFormProps> = ({ handleDataSubmit, isDataSubmiting, inst
                 />
               )}
             />
+            <div className="space-y-5 w-full">
+              <h1 className="font-semibold text-lg xl:text-xl">Shipping Address</h1>
+              <div>
+                <TextField
+                  value={values.name}
+                  error={touched.name && Boolean(errors.name)}
+                  helperText={touched.name && typeof errors.name === 'string' ? errors.name : ''}
+                  className="w-full"
+                  name="name"
+                  onChange={handleChange}
+                  label="Name"
+                />
+              </div>
+              <div className="space-y-5 gap-5 md:space-y-0 md:flex">
+                <TextField
+                  value={values.phone}
+                  error={touched.phone && Boolean(errors.phone)}
+                  helperText={touched.phone && typeof errors.phone === 'string' ? errors.phone : ''}
+                  className="w-full"
+                  name="phone"
+                  onChange={handleChange}
+                  label="Phone"
+                />
+                <TextField
+                  value={values.email}
+                  error={touched.email && Boolean(errors.email)}
+                  helperText={touched.email && typeof errors.email === 'string' ? errors.email : ''}
+                  className="w-full"
+                  name="email"
+                  onChange={handleChange}
+                  label="Email"
+                />
+              </div>
+              <div>
+                <TextField
+                  multiline
+                  rows={4}
+                  value={values.address}
+                  error={touched.address && Boolean(errors.address)}
+                  helperText={
+                    touched.address && typeof errors.address === 'string' ? errors.address : ''
+                  }
+                  className="w-full"
+                  name="address"
+                  onChange={handleChange}
+                  label="Address"
+                />
+              </div>
+            </div>
             <div className="flex mt-4 items-center gap-2">
               <button
                 onClick={() => setOpen(false)}

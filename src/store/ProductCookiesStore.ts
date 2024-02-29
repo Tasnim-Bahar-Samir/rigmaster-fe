@@ -1,4 +1,4 @@
-import { deleteCookie, getCookie, setCookie } from 'cookies-next';
+import { deleteCookie, getCookie, hasCookie, setCookie } from 'cookies-next';
 import { create } from 'zustand';
 
 interface SelectedProductState {
@@ -30,11 +30,14 @@ export const selectedProductStore = create<SelectedProductState>((set, get) => (
   },
 
   setPrevCookies: () => {
-    const cookieValue = getCookie('addedProducts');
-    if (cookieValue && typeof cookieValue === 'string') {
-      const productsFromCookie = JSON.parse(cookieValue);
-      return set({ products: productsFromCookie });
+    let _: any = [];
+    if (hasCookie('addedProducts')) {
+      const __ = getCookie('addedProducts');
+      if (__) {
+        _ = JSON.parse(__);
+      }
     }
+    return set({ products: _ });
   },
 
   setCartOpen: (data) => {

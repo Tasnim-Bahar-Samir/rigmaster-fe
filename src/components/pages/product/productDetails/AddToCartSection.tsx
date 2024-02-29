@@ -14,6 +14,7 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
     product_size_varient,
     price,
     meta_description,
+    slug,
   } = productDetails;
   const [size, setSize] = useState<any>('');
   const [img, setImg] = useState(productDetails?.product_image?.find((i: any) => i.is_feature));
@@ -45,6 +46,7 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
       sizeTitle: size?.size?.size_title,
       color: color,
       quantity: quantity,
+      product_code: slug,
     };
     setDerectByProduct([productData]);
     push('/checkout');
@@ -63,6 +65,7 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
       sizeTitle: size?.size?.size_title,
       color: color,
       quantity: quantity,
+      product_code: slug,
     };
     const alreadyExist = products.find((prod: any) => prod.id === size?.id);
     if (alreadyExist) {
@@ -126,10 +129,12 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
           </div>
           <div className="text-xs xl:text-sm">{meta_description}</div>
           <div className="space-y-2 xl:space-y-4">
-            <div className="flex items-center gap-2">
-              <p className="font-medium">Color:</p>
-              <p className="capitalize">{color}</p>
-            </div>
+            {color && (
+              <div className="flex items-center gap-2">
+                <p className="font-medium">Color:</p>
+                <p className="capitalize">{color}</p>
+              </div>
+            )}
             <h5 className="font-medium md:text-lg xl:text-xl">Select Size</h5>
             <div className="flex items-center flex-wrap gap-3 xl:gap-4">
               {product_size_varient?.map((i: any) => (
@@ -145,6 +150,11 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
                 </button>
               ))}
             </div>
+            {size?.size?.size_details && (
+              <div className="text-sm whitespace-pre-line text-slate-500">
+                {size?.size?.size_details}
+              </div>
+            )}
             {error && <p className="text-xs text-red-600 mt-1">{error}</p>}
             {size &&
               (size.quantity > 0 ? (

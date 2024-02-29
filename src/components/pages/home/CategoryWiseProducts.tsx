@@ -77,14 +77,17 @@ const CategoryWiseProducts: FC<Category1ProductsProps> = ({ title, productData, 
                     </SwiperSlide>
                   ))
                 : !isLoading &&
-                  productData?.map((i: ProductDataType) => (
+                  productData?.map((i: any) => (
                     <SwiperSlide className="" key={Math.random()}>
                       <div>
                         <ProductCard
-                          thumbnail={i.thumbnail}
-                          title={i.title}
                           price={i.price}
+                          thumbnail={i?.product_image?.find((i: any) => i.is_feature)?.image}
+                          alterThumbnail={
+                            i?.product_image?.filter((i: any) => !i.is_feature)?.[0]?.image
+                          }
                           slug={i.slug}
+                          title={i.title}
                         />
                       </div>
                     </SwiperSlide>

@@ -4,7 +4,7 @@ export const productFormValidation = () =>
   yup.object().shape({
     title: yup.string().max(150).required('Title is required'),
     price: yup.string().max(150).required('Price is required'),
-    color: yup.string().max(50).required('Color name is required'),
+    color: yup.string().max(50),
     category: yup.object().required('Category is required'),
     meta_description: yup.string().required('This field is required').max(250),
     description_html: yup.string(),

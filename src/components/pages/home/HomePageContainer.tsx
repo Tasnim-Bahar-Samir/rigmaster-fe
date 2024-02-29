@@ -5,17 +5,18 @@ import CategoryWiseProducts from './CategoryWiseProducts';
 import CategoryHiglight from './CategoryHiglight';
 import { useGetCategoryData } from '@/hooks/productCategory.hook';
 import { useGetProductData } from '@/hooks/product.hooks';
+import EidCollectionSection from './EidCollectionSection';
 const HomePageContainer = () => {
   const { data: categoryData, isLoading: isCategoryLoading } = useGetCategoryData();
   const { data: cate1ProductData, isLoading: isCate1ProductLoading } = useGetProductData(
     '',
     '',
-    10,
+    12,
     0,
   );
   const { data: cate2ProductData, isLoading: isCate2ProductLoading } = useGetProductData(
     '',
-    '',
+    'luxury-punjabi',
     10,
     0,
   );
@@ -25,8 +26,7 @@ const HomePageContainer = () => {
         <HomeHero />
         <div className="mt-10 space-y-10 md:space-y-16 md:mt-16 xl:space-y-20 xl:mt-20">
           <TopCategories isLoading={isCategoryLoading} categoryData={categoryData?.results} />
-          <CategoryWiseProducts
-            title="Eid Collections"
+          <EidCollectionSection
             isLoading={isCate1ProductLoading}
             productData={cate1ProductData?.results}
           />

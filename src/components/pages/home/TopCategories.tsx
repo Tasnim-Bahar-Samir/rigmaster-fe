@@ -32,7 +32,7 @@ const TopCategories: FC<TopCategoriesProps> = ({ categoryData, isLoading }) => {
             spaceBetween: 10,
           },
           768: {
-            slidesPerView: 3.5,
+            slidesPerView: 3,
             centeredSlides: true,
             spaceBetween: 16,
           },

@@ -16,7 +16,12 @@ const ShopPage = ({ category = '' }) => {
   } else {
     offset = (currentPage - 1) * dataPerpage;
   }
-  const { data, isLoading } = useGetProductData('', category, dataPerpage, offset);
+  const { data, isLoading } = useGetProductData(
+    '',
+    category == 'eid-collection' ? '' : category,
+    dataPerpage,
+    offset,
+  );
   const totalData = data?.count;
   const pageCount = Math.ceil(totalData / dataPerpage);
   const params = useSearchParams().toString();
@@ -26,7 +31,8 @@ const ShopPage = ({ category = '' }) => {
     <div className="rm-commonContainer">
       <div className=" items-center justify-between my-5 space-y-3 md:space-y-0 md:flex md:py-8 xl:py-10">
         <div className="font-medium xl:text-lg">
-          <Link href={'/'}>Home</Link>/ <span className="text-[#C2A466]">Shop</span>
+          <Link href={'/'}>Home</Link>/{' '}
+          <span className="text-slate-500 capitalize">Shop{category ? `/ ${category}` : ''}</span>
         </div>
         <div className="flex items-center gap-2 xl:gap-3">
           <h6>{data?.count} Products Found</h6>
