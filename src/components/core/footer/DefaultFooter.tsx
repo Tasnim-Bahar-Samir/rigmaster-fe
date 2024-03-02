@@ -37,14 +37,14 @@ const DefaultFooter = () => {
   return (
     <footer className="sticky rm-commonContainer w-full top-[100vh] pt-10 pb-5 xl:pt-20">
       <div className="flex flex-col justify-between items-center gap-7 text-center lg:gap-5 lg:text-start lg:flex-row lg:items-start">
-        <div className="space-y-4 max-w-[240px] md:gap-y-5 xl:space-y-7">
+        <div className="space-y-4 max-w-[240px] md:gap-y-5 xl:space-y-6">
           <Link className="mx-auto w-fit inline-block lg:mx-0" href={'/'}>
             {' '}
             <Image
               priority
-              src={'/images/logos/logo2.webp'}
-              width={120}
-              height={30}
+              src={'/images/logos/logo2.png'}
+              width={200}
+              height={50}
               alt="RIGMASTER"
             />
           </Link>

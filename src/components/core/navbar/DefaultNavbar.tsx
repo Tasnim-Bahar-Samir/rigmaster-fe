@@ -75,15 +75,17 @@ const DefaultNavbar = () => {
           <div className="lg:hidden">
             <MobileNav open={open} setOpen={setOpen} />
           </div>
-          <Link href={'/'}>
-            <Image
-              priority
-              src={'/images/logos/logo2.webp'}
-              width={120}
-              height={30}
-              alt="RIGMASTER"
-            />
-          </Link>
+          <div className="max-w-[150px] md:max-w-full">
+            <Link className="" href={'/'}>
+              <Image
+                priority
+                src={'/images/logos/logo2.png'}
+                width={230}
+                height={55}
+                alt="RIGMASTER"
+              />
+            </Link>
+          </div>
           <div className="items-center w-full gap-4 hidden lg:flex xl:gap-5">
             <SearchSection setOpen={setOpen} />
           </div>

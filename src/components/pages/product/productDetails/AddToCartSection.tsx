@@ -78,7 +78,7 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
   };
 
   return (
-    <div className="flex gap-10 flex-col lg:gap-20 md:flex-row md:justify-center">
+    <div className="flex gap-10 flex-col lg:gap-20 md:flex-row">
       <div className="md:w-1/2">
         <div className="flex flex-col-reverse gap-3 lg:flex-row">
           <div className=" gap-2 grid grid-cols-4 lg:flex lg:flex-col lg:w-1/5">
@@ -114,7 +114,7 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
           </div>
         </div>
       </div>
-      <div className=" flex justify-center text-center md:text-left md:justify-start md:w-1/2">
+      <div className=" flex md:justify-start md:w-1/2">
         <div className="space-y-4 md:space-y-5 xl:space-y-8">
           <div className="space-y-2 xl:space-y-4">
             <div className="space-y-1">
@@ -135,20 +135,22 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
                 <p className="capitalize">{color}</p>
               </div>
             )}
-            <h5 className="font-medium md:text-lg xl:text-xl">Select Size</h5>
-            <div className="flex items-center flex-wrap gap-3 xl:gap-4">
-              {product_size_varient?.map((i: any) => (
-                <button
-                  onClick={() => {
-                    setError('');
-                    setSize(i);
-                  }}
-                  key={Math.random()}
-                  className={`${size == i ? 'border-black' : ''} uppercase p-2 border text-sm xl:p-4`}
-                >
-                  {i.size.size_title}
-                </button>
-              ))}
+            <div>
+              <h5 className="font-medium md:text-lg xl:text-xl">Select Size</h5>
+              <div className="flex items-center flex-wrap gap-3 xl:gap-4">
+                {product_size_varient?.map((i: any) => (
+                  <button
+                    onClick={() => {
+                      setError('');
+                      setSize(i);
+                    }}
+                    key={Math.random()}
+                    className={`${size == i ? 'border-black' : ''} uppercase p-2 border text-sm min-w-[40px] font-medium`}
+                  >
+                    {i.size.size_title}
+                  </button>
+                ))}
+              </div>
             </div>
             {size?.size?.size_details && (
               <div className="text-sm whitespace-pre-line text-slate-500">
@@ -158,7 +160,7 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
             {error && <p className="text-xs text-red-600 mt-1">{error}</p>}
             {size &&
               (size.quantity > 0 ? (
-                <p className="text-green-800 font-medium">Intock</p>
+                <p className="text-green-500 font-medium">Intock</p>
               ) : (
                 <p className="text-red-700 font-medium">Out of stock</p>
               ))}
@@ -166,7 +168,7 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
           <div className="space-y-3 xl:space-y-5">
             <div className=" flex items-center gap-3 mt-10 xl:gap-4">
               <h5 className="font-medium md:text-lg xl:text-xl">Quantity</h5>
-              <div className="flex items-center gap-3 border p-2 w-fit md:px-3 xl:gap-4">
+              <div className="flex items-center border w-fit px-3 py-2 gap-4">
                 <button onClick={() => setQuantity(quantity > 1 ? quantity - 1 : quantity)}>
                   -
                 </button>
