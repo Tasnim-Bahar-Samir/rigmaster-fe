@@ -16,7 +16,7 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: 'Rigmaster',
-  description: 'A clothing e-commerce.',
+  description: 'Unique Trend of Fashion Wear',
   icons: '/favicon.ico',
   openGraph: {
     type: 'website',

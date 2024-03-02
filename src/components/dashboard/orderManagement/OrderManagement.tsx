@@ -113,6 +113,10 @@ const OrderManagement = () => {
         </div>
       </div>
       <div>
+        <p className="text-lg mb-5 capitalize">
+          {status ? status.toLowerCase() : 'All'} Orders:{' '}
+          <span className="font-semibold">{data?.count}</span>
+        </p>
         <div>
           <DashboardTable columns={_col} isLoading={isLoading} data={data?.results || []} />
         </div>

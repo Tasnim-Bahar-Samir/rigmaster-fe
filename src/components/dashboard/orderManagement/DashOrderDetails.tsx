@@ -15,7 +15,7 @@ const DashOrderDetails: FC<DashOrderDetailsProps> = ({ orderDetails, setAnchorEl
   };
   return (
     <div>
-      <MenuItem onClick={() => setOpenEditModal(true)}>Details</MenuItem>
+      <MenuItem onClick={() => setOpenEditModal(true)}>Order Details</MenuItem>
       <Dialog open={openEditModal} maxWidth="xl" fullWidth onClose={handleClose}>
         <div className="p-5">
           <p className="flex">

@@ -3,7 +3,6 @@ import { FC, useState } from 'react';
 import { BsThreeDots } from 'react-icons/bs';
 import DashOrderDetails from './DashOrderDetails';
 import OrderForm from './OrderForm';
-import DeleteActionModal from '@/components/core/DeleteActionModal';
 import Invoice from './Invioce';
 
 type OrderActionsProps = {
@@ -14,13 +13,7 @@ type OrderActionsProps = {
   isDataEditing: boolean;
 };
 
-const OrderActions: FC<OrderActionsProps> = ({
-  instance,
-  handleEdit,
-  isDataEditing,
-  handleDeleteFun,
-  isDataDeleting,
-}) => {
+const OrderActions: FC<OrderActionsProps> = ({ instance, handleEdit, isDataEditing }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: any) => {
@@ -66,11 +59,11 @@ const OrderActions: FC<OrderActionsProps> = ({
         />
         <DashOrderDetails setAnchorEl={setAnchorEl} orderDetails={instance} />
         <Invoice orderDetails={instance} />
-        <DeleteActionModal
+        {/* <DeleteActionModal
           setAnchorEl={setAnchorEl}
           handleDeleteSubmit={handleDeleteFun}
           isLoading={isDataDeleting}
-        />
+        /> */}
       </Menu>
     </div>
   );

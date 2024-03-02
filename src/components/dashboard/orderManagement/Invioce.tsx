@@ -16,7 +16,7 @@ const Invoice: FC<InvoiceProps> = ({ orderDetails }) => {
   });
   return (
     <div>
-      <MenuItem onClick={handlePrint}>Invoice</MenuItem>
+      <MenuItem onClick={handlePrint}>Print Invoice</MenuItem>
       <div
         ref={componentRef}
         className=" items-center h-full p-16 justify-center hidden print:flex"
