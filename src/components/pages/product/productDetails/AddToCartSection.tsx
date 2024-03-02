@@ -113,6 +113,7 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
                   layout="responsive"
                   objectFit="cover"
                   alt="product_img"
+                  priority
                 />
               </PhotoView>
             </div>
