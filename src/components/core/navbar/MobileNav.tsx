@@ -19,12 +19,12 @@ const MobileNav = ({ open, setOpen }: { open: boolean; setOpen: Function }) => {
       <Drawer anchor={'left'} open={open} onClose={() => setOpen(!open)}>
         <div className=" w-72 p-5 h-full ">
           <div className="flex justify-between items-center border-b">
-            <Link href={'/'}>
+            <Link className="max-w-[150px] md:max-w-full" href={'/'}>
               <Image
                 priority
-                src={'/images/logos/logo2.webp'}
-                width={120}
-                height={30}
+                src={'/images/logos/logo2.png'}
+                width={230}
+                height={55}
                 alt="RIGMASTER"
               />
             </Link>

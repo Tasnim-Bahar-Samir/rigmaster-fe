@@ -26,7 +26,7 @@ const OrderCompletePageContainer = ({ orderDetails }: { orderDetails: any }) => 
         </div>
       </div>
       <div className="mt-5 xl:mt-8">
-        <h3 className="text-lg mb-4 font-semibold xl:mb-5 xl:text-xl">Order Detals</h3>
+        <h3 className="text-lg mb-4 font-semibold xl:mb-5 xl:text-xl">Order Details</h3>
         <div>
           <div className="space-y-3 py-3 border-b">
             {orderDetails?.purchase_order?.map((i: any) => (

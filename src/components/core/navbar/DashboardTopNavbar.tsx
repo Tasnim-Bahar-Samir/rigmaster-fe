@@ -13,8 +13,14 @@ const DashboardTopNav = () => {
         <div className="flex  pt-5 lg:items-start">
           <div className=" pb-3 rounded-tr-xl rounded-tl-xl md:px-3 lg:min-w-[288px] lg:bg-[#F5F5F5] lg:pt-7 ">
             <div className="w-[120px] h-[30px] md:w-[194px] mx-auto md:h-[54px] relative">
-              <Link href="/" className=" ">
-                <Image src={'/images/logos/logo2.webp'} alt="logo" layout="fill" />
+              <Link className="max-w-[150px] md:max-w-full" href={'/'}>
+                <Image
+                  priority
+                  src={'/images/logos/logo2.png'}
+                  width={230}
+                  height={55}
+                  alt="RIGMASTER"
+                />
               </Link>
             </div>
           </div>

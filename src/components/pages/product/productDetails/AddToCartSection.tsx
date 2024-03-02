@@ -3,6 +3,8 @@ import { selectedProductStore } from '@/store/ProductCookiesStore';
 import Image from 'next/legacy/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
   const {
@@ -80,39 +82,42 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
   return (
     <div className="flex gap-10 flex-col lg:gap-20 md:flex-row">
       <div className="md:w-1/2">
-        <div className="flex flex-col-reverse gap-3 lg:flex-row">
-          <div className=" gap-2 grid grid-cols-4 lg:flex lg:flex-col lg:w-1/5">
-            {product_image?.map((i: any) => (
-              <div
-                key={Math.random()}
-                className={`cursor-pointer border ${i === img ? 'border-2 border-[black]' : ''}`}
-              >
+        <PhotoProvider>
+          <div className="flex flex-col-reverse gap-3 lg:flex-row">
+            <div className=" gap-2 grid grid-cols-4 lg:flex lg:flex-col lg:w-1/5">
+              {product_image?.map((i: any) => (
+                <div
+                  key={Math.random()}
+                  className={`cursor-pointer border ${i === img ? 'border-2 border-[black]' : ''}`}
+                >
+                  <Image
+                    onClick={() => setImg(i)}
+                    className={`cursor-pointer border ${i.id === img.id ? 'border border-[#C2A466]' : ''}`}
+                    src={i.image}
+                    width={298}
+                    height={350}
+                    alt="product_img"
+                    layout="responsive"
+                    objectFit="cover"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="lg:w-4/5">
+              <PhotoView src={img.image}>
                 <Image
-                  onClick={() => setImg(i)}
-                  className={`cursor-pointer border ${i.id === img.id ? 'border border-[#C2A466]' : ''}`}
-                  src={i.image}
+                  className="w-full cursor-pointer border min-h-full"
+                  src={img.image}
                   width={298}
-                  height={320}
-                  alt="product_img"
+                  height={350}
                   layout="responsive"
                   objectFit="cover"
+                  alt="product_img"
                 />
-              </div>
-            ))}
+              </PhotoView>
+            </div>
           </div>
-          <div className="lg:w-4/5">
-            <Image
-              className=""
-              src={img.image}
-              width={298}
-              height={320}
-              alt="product_img"
-              layout="responsive"
-              objectFit="cover"
-              priority
-            />
-          </div>
-        </div>
+        </PhotoProvider>
       </div>
       <div className=" flex md:justify-start md:w-1/2">
         <div className="space-y-4 md:space-y-5 xl:space-y-8">
