@@ -16,7 +16,7 @@ export const useGetProductData = (
     queryKey: ['product', search, category, params, dataPerpage, offset],
     queryFn: () =>
       axiousResuest({
-        url: `/product/management/?${params}&category__slug__in=${category}&limit=${dataPerpage}&offset=${offset}`,
+        url: `/product/management/?${params}&category__slug__in=${category}&limit=${dataPerpage}&offset=${offset}&ordering=-priority`,
         method: 'get',
       }),
   });
@@ -26,7 +26,7 @@ export const useGetDashProductData = (search = '', dataPerpage: number, offset: 
     queryKey: ['product', search],
     queryFn: () =>
       axiousResuest({
-        url: `/product/management/?search=${search}&limit=${dataPerpage}&offset=${offset}`,
+        url: `/product/management/?search=${search}&limit=${dataPerpage}&offset=${offset}&ordering=-priority`,
         method: 'get',
       }),
   });

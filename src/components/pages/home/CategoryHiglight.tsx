@@ -5,7 +5,7 @@ import React from 'react';
 const CategoryHiglight = () => {
   return (
     <div className="rm-commonContainer">
-      <Link href={`/product-category/eid-collections`}>
+      <Link href={`/product-category/eid-collection`}>
         <Image
           className="cursor-pointer"
           src={'/images/banner-images/img2.jpg'}

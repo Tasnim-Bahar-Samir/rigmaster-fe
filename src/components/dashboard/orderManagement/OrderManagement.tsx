@@ -36,7 +36,9 @@ export const OrderDataColumn: DashboardTableColumn[] = [
     row: (data: any) => (
       <div>
         {' '}
-        <p className="text-sm px-2 py-1 rounded-md bg-slate-500 w-fit text-white">
+        <p
+          className={`${data?.status === 'PENDING' ? 'bg-slate-500' : data?.status === 'PROCESS' ? 'bg-yellow-600' : data?.status == 'SHIFT' ? 'bg-blue-600' : data?.status == 'DELIVERED' ? 'bg-green-600' : 'bg-red-600'} text-sm px-2 py-1 rounded-md  w-fit text-white`}
+        >
           {data.status || ''}
         </p>
       </div>
@@ -95,8 +97,13 @@ const OrderManagement = () => {
   const totalData = data?.count;
   const pageCount = Math.ceil(totalData / dataPerpage);
   return (
-    <div className="space-y-10">
+    <div className="space-y-8">
+      <h4 className="text-2xl font-bold">Order List.</h4>
       <div className="flex items-center justify-between">
+        <p className="text-lg capitalize">
+          {status ? status.toLowerCase() : 'All'} Orders:{' '}
+          <span className="font-semibold">{data?.count}</span>
+        </p>
         <div className="w-fit px-4 border rounded-lg">
           <select
             value={status}
@@ -113,10 +120,6 @@ const OrderManagement = () => {
         </div>
       </div>
       <div>
-        <p className="text-lg mb-5 capitalize">
-          {status ? status.toLowerCase() : 'All'} Orders:{' '}
-          <span className="font-semibold">{data?.count}</span>
-        </p>
         <div>
           <DashboardTable columns={_col} isLoading={isLoading} data={data?.results || []} />
         </div>

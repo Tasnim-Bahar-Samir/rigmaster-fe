@@ -1,4 +1,4 @@
-import { Dialog, MenuItem } from '@mui/material';
+import { Dialog, MenuItem, TextField } from '@mui/material';
 import { useState } from 'react';
 
 import { useFormik } from 'formik';
@@ -31,6 +31,7 @@ const ProductEdit = ({ instance, setAnchorEl }: { instance: any; setAnchorEl: an
         additional_information_html: instance?.additional_information_html ?? '',
         category: instance?.category ?? null,
         price: instance?.price ?? '',
+        priority: instance?.priority ?? '',
         color: instance?.color ?? '',
         product_image: instance?.product_image ?? [],
         product_size_varient: instance?.product_size_varient ?? [],
@@ -72,6 +73,7 @@ const ProductEdit = ({ instance, setAnchorEl }: { instance: any; setAnchorEl: an
             description_html: data?.description_html || null,
             additional_information_html: data?.additional_information_html || null,
             price: data?.price || null,
+            priority: data?.priority || null,
             color: data?.color || null,
             product_image: updated_product_image || null,
             product_size_varient: transStockList.map(({ product, ...rest }: { product: any }) =>
@@ -169,8 +171,25 @@ const ProductEdit = ({ instance, setAnchorEl }: { instance: any; setAnchorEl: an
                 {/* other details section */}
                 <>
                   <h3 className="text-xl font-semibold pb-4 md:text-2xl">Other Details</h3>
+                  <div className="mb-8">
+                    <h5 className=" font-semibold mt-4 mb-2">Set Product Priority.</h5>
+                    <TextField
+                      size="small"
+                      value={values.priority}
+                      error={touched.priority && Boolean(errors.priority)}
+                      helperText={
+                        touched.priority && typeof errors.priority === 'string'
+                          ? errors.priority
+                          : ''
+                      }
+                      className="w-full"
+                      name="priority"
+                      onChange={handleChange}
+                      label="Priority Number"
+                    />
+                  </div>
                   <div className="">
-                    <h5 className=" font-semibold my-4 lg:text-xl">Description</h5>
+                    <h5 className=" font-semibold mt-4 mb-2">Description</h5>
                     <div className="">
                       <TextEditor
                         value={values?.description_html}

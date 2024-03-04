@@ -91,7 +91,8 @@ const ProductCategoryManagement = () => {
   const { data, isLoading } = useGetCategoryData(searchValue);
   const { mutateAsync, isLoading: isDataSubmiting } = useAddCategoryData();
   return (
-    <div className="space-y-10">
+    <div className="space-y-8">
+      <h4 className="text-2xl font-bold">Category List.</h4>
       <div className="flex items-center justify-between">
         <DashboardTableSearch setSearchValue={setSearchValue} />
         <CategoryForm handleDataSubmit={mutateAsync} isDataSubmiting={isDataSubmiting} />

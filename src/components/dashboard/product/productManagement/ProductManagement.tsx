@@ -110,7 +110,8 @@ const ProductManagement = () => {
   const totalData = data?.count;
   const pageCount = Math.ceil(totalData / dataPerpage);
   return (
-    <div className="space-y-10">
+    <div className="space-y-8">
+      <h4 className="text-2xl font-bold">Product List</h4>
       <div className="flex items-center justify-between">
         <DashboardTableSearch setSearchValue={setSearchValue} />
         <Link
