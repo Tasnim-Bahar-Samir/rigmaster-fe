@@ -91,11 +91,11 @@ const DefaultFooter = () => {
             <div className="space-y-2">
               <a href="mailto: example@gmail.com" className="flex items-center gap-2">
                 <MdEmail className="text-[#C2A466]" />
-                example@gmail.com
+                rigmasteronline@gmail.com
               </a>
-              <a href="tel:++880 1572-241894" className="flex items-center gap-2">
+              <a href="tel:09606-999910" className="flex items-center gap-2">
                 <FaPhone className="text-[#C2A466]" />
-                +880 1572-241894
+                09606-999910
               </a>
             </div>
             <SocialSection />

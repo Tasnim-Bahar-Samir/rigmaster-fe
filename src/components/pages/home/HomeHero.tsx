@@ -50,7 +50,20 @@ const HomeHero = () => {
                 priority
                 src={'/images/banner-images/img1.jpg'}
                 width={1920}
-                height={1000}
+                height={1200}
+                alt="banner-img"
+                layout="responsive"
+                objectFit="cover"
+              />
+            </Link>
+          </SwiperSlide>
+          <SwiperSlide>
+            <Link href={`/product-category/luxury-punjabi`} className="relative">
+              <Image
+                priority
+                src={'/images/banner-images/img2.jpeg'}
+                width={1920}
+                height={1200}
                 alt="banner-img"
                 layout="responsive"
                 objectFit="cover"
@@ -61,22 +74,9 @@ const HomeHero = () => {
             <Link href={`/product-category/eid-collection`} className="relative">
               <Image
                 priority
-                src={'/images/banner-images/img2.jpg'}
+                src={'/images/banner-images/img3.jpeg'}
                 width={1920}
-                height={1000}
-                alt="banner-img"
-                layout="responsive"
-                objectFit="cover"
-              />
-            </Link>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Link href={`/product-category/eid-collection`} className="relative">
-              <Image
-                priority
-                src={'/images/banner-images/img3.jpg'}
-                width={1920}
-                height={1000}
+                height={1200}
                 alt="banner-img"
                 layout="responsive"
                 objectFit="cover"

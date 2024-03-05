@@ -22,7 +22,7 @@ const CategoryWiseProducts: FC<Category1ProductsProps> = ({ title, productData, 
       <div className="flex items-center justify-between mb-5 md:mb-7">
         <h5 className="text-lg font-semibold md:text-xl xl:text-2xl">{title}</h5>
         <Link
-          href={'/product-category/eid-collection'}
+          href={'/product-category/luxury-punjabi'}
           className="px-4 py-2 bg-[#C2A466] text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4"
         >
           View All

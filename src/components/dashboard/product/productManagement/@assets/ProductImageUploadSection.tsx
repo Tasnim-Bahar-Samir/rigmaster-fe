@@ -22,6 +22,9 @@ const ProductImageUploadSection: FC<ProductImageUploadSectionProps> = ({
 
   const handleFileChange = async (e: any) => {
     try {
+      if (e.target.files[0].size > 2000000) {
+        return alert('Image size slould be maximum 2MB');
+      }
       if (e.target.files && e.target.files[0]) {
         const selectedFile = e.target.files[0];
         if (selectedFile) {

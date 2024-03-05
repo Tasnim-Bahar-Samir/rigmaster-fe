@@ -59,6 +59,16 @@ export const ProductDataColumn: DashboardTableColumn[] = [
     ),
   },
   {
+    title: 'Slug',
+    dataKey: 'slug',
+    row: (data: any) => <div className="text-sm">{data.slug}</div>,
+  },
+  {
+    title: 'Priority',
+    dataKey: 'priority',
+    row: (data: any) => <div className="text-sm">{data.priority || 0}</div>,
+  },
+  {
     title: 'Date',
     dataKey: 'date',
     row: (data: any) => (

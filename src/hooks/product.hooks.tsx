@@ -23,7 +23,7 @@ export const useGetProductData = (
 };
 export const useGetDashProductData = (search = '', dataPerpage: number, offset: number) => {
   return useQuery({
-    queryKey: ['product', search],
+    queryKey: ['product', search, dataPerpage, offset],
     queryFn: () =>
       axiousResuest({
         url: `/product/management/?search=${search}&limit=${dataPerpage}&offset=${offset}&ordering=-priority`,
