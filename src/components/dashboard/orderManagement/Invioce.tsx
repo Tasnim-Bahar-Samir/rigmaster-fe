@@ -14,6 +14,7 @@ const Invoice: FC<InvoiceProps> = ({ orderDetails }) => {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
+
   return (
     <div>
       <MenuItem onClick={handlePrint}>Print Invoice</MenuItem>
@@ -73,7 +74,7 @@ const Invoice: FC<InvoiceProps> = ({ orderDetails }) => {
                       <p className="text-sm font-medium flex items-center gap-4">
                         {i?.product?.title}
                         {`(${i?.product?.slug})`}-{i?.others_info?.product_size_varient?.size_title}
-                        {i.product.color && `-${i?.product?.color}`}
+                        {i?.product?.color && `-${i?.product?.color}`}
                         <span>x</span> <span>{i.quantity}</span> <span>{i?.product?.price}</span>
                       </p>{' '}
                     </div>
