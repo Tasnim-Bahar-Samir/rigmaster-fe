@@ -3,14 +3,24 @@ import { IoSearchOutline } from 'react-icons/io5';
 
 type DashboardTableSearchProps = {
   setSearchValue: Function;
+  setCurrentPage?: Function;
 };
-const DashboardTableSearch: FC<DashboardTableSearchProps> = ({ setSearchValue }) => {
+const DashboardTableSearch: FC<DashboardTableSearchProps> = ({
+  setSearchValue,
+  setCurrentPage,
+}) => {
   const handleSubmit = (e: any) => {
+    if (setCurrentPage) {
+      setCurrentPage(1);
+    }
     e.preventDefault();
     setSearchValue(e.target.search.value);
   };
 
   const handleChange = (e: any) => {
+    if (setCurrentPage) {
+      setCurrentPage(1);
+    }
     e.preventDefault();
     e.target.value == '' && setSearchValue(e.target.value);
   };

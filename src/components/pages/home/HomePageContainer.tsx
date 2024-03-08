@@ -20,6 +20,18 @@ const HomePageContainer = () => {
     10,
     0,
   );
+  const { data: cate3ProductData, isLoading: isCate3ProductLoading } = useGetProductData(
+    '',
+    'casual-shirt',
+    10,
+    0,
+  );
+  const { data: cate4ProductData, isLoading: isCate4ProductLoading } = useGetProductData(
+    '',
+    'polo-t-shirt',
+    10,
+    0,
+  );
   return (
     <div>
       <div>
@@ -35,6 +47,18 @@ const HomePageContainer = () => {
             title="Luxury Punjabi"
             isLoading={isCate2ProductLoading}
             productData={cate2ProductData?.results}
+          />
+          <CategoryWiseProducts
+            title="Casual Shirt"
+            category_slug="casual-shirt"
+            isLoading={isCate3ProductLoading}
+            productData={cate3ProductData?.results}
+          />
+          <CategoryWiseProducts
+            title="Polo T-Shirt"
+            category_slug="polo-t-shirt"
+            isLoading={isCate4ProductLoading}
+            productData={cate4ProductData?.results}
           />
         </div>
       </div>

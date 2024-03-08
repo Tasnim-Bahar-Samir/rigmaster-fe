@@ -110,12 +110,8 @@ const ProductManagement = () => {
   const [searchValue, setSearchValue] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   let dataPerpage = 20;
-  let offset;
-  if (searchValue) {
-    offset = 0;
-  } else {
-    offset = (currentPage - 1) * dataPerpage;
-  }
+  let offset = (currentPage - 1) * dataPerpage;
+
   const { data, isLoading } = useGetDashProductData(searchValue, dataPerpage, offset);
   const totalData = data?.count;
   const pageCount = Math.ceil(totalData / dataPerpage);
@@ -123,7 +119,7 @@ const ProductManagement = () => {
     <div className="space-y-8">
       <h4 className="text-2xl font-bold">Product List</h4>
       <div className="flex items-center justify-between">
-        <DashboardTableSearch setSearchValue={setSearchValue} />
+        <DashboardTableSearch setCurrentPage={setCurrentPage} setSearchValue={setSearchValue} />
         <Link
           href={'/dashboard/product/add-product'}
           className="disabled:bg-slate-500 px-4 rounded-md mt-3 gap-1 py-2 bg-[#C2A466] text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4 xl:mt-5"

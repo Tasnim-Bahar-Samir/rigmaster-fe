@@ -3,19 +3,12 @@ import ProductList from './ProductList';
 import Link from 'next/link';
 import { useGetProductData } from '@/hooks/product.hooks';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState } from 'react';
 import ProductPagination from '@/components/core/pagination/ProductPagination';
 
 const ShopPage = ({ category = '' }) => {
   const searchParams = useSearchParams();
-  const [currentPage, setCurrentPage] = useState(1);
   let dataPerpage = 40;
-  let offset;
-  if (searchParams.get('search')) {
-    offset = 0;
-  } else {
-    offset = (currentPage - 1) * dataPerpage;
-  }
+  let offset = (Number(searchParams?.get('page')) - 1) * dataPerpage;
   const { data, isLoading } = useGetProductData(
     '',
     category == 'eid-collection' ? '' : category,
@@ -45,11 +38,7 @@ const ShopPage = ({ category = '' }) => {
       <ProductList isLoading={isLoading} productData={data?.results || []} />
       {data?.count > 40 && (
         <div className="flex items-center justify-center mt-5 lg:mt-8">
-          <ProductPagination
-            count={pageCount}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-          />
+          <ProductPagination count={pageCount} />
         </div>
       )}
     </div>

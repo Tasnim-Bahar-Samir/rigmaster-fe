@@ -18,22 +18,60 @@ const ProductCard: FC<ProductCardProps> = ({
   price,
   slug,
 }) => {
+  // alterThumbnail ? (open ? alterThumbnail : thumbnail) : thumbnail
   const [open, setopen] = useState(false);
   return (
     <div className="">
       <div>
         <Link href={`/product/${slug}`} className="relative bg-slate-100">
-          <Image
-            onMouseOver={() => setopen(true)}
-            onMouseOut={() => setopen(false)}
-            className="transition-all"
-            src={alterThumbnail ? (open ? alterThumbnail : thumbnail) : thumbnail}
-            width={298}
-            height={398}
-            alt="category_img"
-            layout="responsive"
-            objectFit="cover"
-          />
+          <div className="relative">
+            {alterThumbnail ? (
+              <>
+                <div
+                  className={`transition-all ease-in-out duration-500 ${!open ? 'opacity-100 ' : ' opacity-0 absolute'}`}
+                >
+                  <Image
+                    onMouseOver={() => setopen(true)}
+                    onMouseOut={() => setopen(false)}
+                    className=""
+                    src={thumbnail}
+                    width={298}
+                    height={398}
+                    alt="category_img"
+                    layout="responsive"
+                    objectFit="cover"
+                  />
+                </div>
+                <div
+                  className={`transition-all ease-in-out duration-500 ${open ? 'opacity-100' : ' opacity-0 absolute'}`}
+                >
+                  <Image
+                    onMouseOver={() => setopen(true)}
+                    onMouseOut={() => setopen(false)}
+                    className=""
+                    src={alterThumbnail && alterThumbnail}
+                    width={298}
+                    height={398}
+                    alt="category_img"
+                    layout="responsive"
+                    objectFit="cover"
+                  />
+                </div>
+              </>
+            ) : (
+              <Image
+                onMouseOver={() => setopen(true)}
+                onMouseOut={() => setopen(false)}
+                className=""
+                src={thumbnail}
+                width={298}
+                height={398}
+                alt="category_img"
+                layout="responsive"
+                objectFit="cover"
+              />
+            )}
+          </div>
         </Link>
         <div className="p-2 space-y-2 xl:space-y-3 xl:p-3">
           <Link href={`/product/${slug}`}>

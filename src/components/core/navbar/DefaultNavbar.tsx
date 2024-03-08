@@ -26,30 +26,24 @@ const CategoryMenu = () => {
 
 export const SearchSection = ({ setOpen }: { setOpen?: Function }) => {
   const pathname = usePathname();
+
   const { push } = useRouter();
   const searchParams = useSearchParams();
   const handleSearch = useCallback(
     (e: any) => {
-      let q: any = {};
-      searchParams.forEach((_value, _key) => {
-        q[_key] = searchParams.get(_key)?.split(',');
-      });
-      q['search'] = e.target.search.value;
-
-      const createQueryString = Object.entries(q)
-        .map(([key, value]) => `${key}=${value}`)
-        .join('&');
-
-      push(pathname + '?' + createQueryString);
+      push(
+        pathname.includes('shop') || pathname.includes('product-category')
+          ? pathname + '?' + `search=${e.target.search.value}`
+          : '/?' + `search=${e.target.search.value}`,
+      );
     },
-    [searchParams, pathname, push],
+    [pathname, push],
   );
   return (
     <form
       onSubmit={async (e) => {
         e.preventDefault();
         setOpen && setOpen(false);
-        await push('/shop');
         handleSearch(e);
       }}
       className="bg-slate-100 flex w-full items-center gap-2 p-3"
@@ -57,6 +51,7 @@ export const SearchSection = ({ setOpen }: { setOpen?: Function }) => {
       <input
         name="search"
         type="text"
+        defaultValue={searchParams?.get('search') || ''}
         className="h-full w-full bg-inherit outline-none"
         placeholder="Search.."
       />
