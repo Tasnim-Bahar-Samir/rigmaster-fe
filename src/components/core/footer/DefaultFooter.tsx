@@ -23,7 +23,7 @@ const SocialSection = () => {
         </Link>
       </li>
       <li className="bg-[#C2A466] rounded-full p-2 text-white w-fit hover:bg-black transition-all">
-        <a aria-label="Chat on WhatsApp" href="https://wa.me/09606-999910" target="_blank">
+        <a aria-label="Chat on WhatsApp" href="https://wa.me/01833395233" target="_blank">
           <FaWhatsapp size={18} />
         </a>
       </li>
