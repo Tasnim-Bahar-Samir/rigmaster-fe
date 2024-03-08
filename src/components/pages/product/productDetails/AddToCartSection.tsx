@@ -158,9 +158,22 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
                 ))}
               </div>
             </div>
-            {size?.size?.size_details && (
+            {category?.title?.toLowerCase()?.includes('luxury') && size?.size?.size_details && (
               <div className="text-sm whitespace-pre-line text-slate-500">
                 {size?.size?.size_details}
+              </div>
+            )}
+            {(category?.title?.toLowerCase()?.includes('casual') ||
+              category?.title?.toLowerCase()?.includes('formal')) &&
+              size?.size?.shirt_size_details && (
+                <div className="text-sm whitespace-pre-line text-slate-500">
+                  {size?.size?.shirt_size_details}
+                </div>
+              )}
+
+            {category?.title?.toLowerCase()?.includes('polo') && size?.size?.polo_size_details && (
+              <div className="text-sm whitespace-pre-line text-slate-500">
+                {size?.size?.polo_size_details}
               </div>
             )}
             {error && <p className="text-xs text-red-600 mt-1">{error}</p>}

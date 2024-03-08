@@ -21,7 +21,8 @@ export const dateWithTimeFormat = (date: any) => {
 };
 
 export function formatTimestamp(originalTimestamp: any) {
-  const day = originalTimestamp.getUTCDate();
+  const dateObject = new Date(originalTimestamp);
+  const day = dateObject.getUTCDate();
   const monthNames = [
     'Jan',
     'Feb',
@@ -36,8 +37,8 @@ export function formatTimestamp(originalTimestamp: any) {
     'Nov',
     'Dec',
   ];
-  const month = monthNames[originalTimestamp.getUTCMonth()];
-  const year = originalTimestamp.getUTCFullYear();
+  const month = monthNames[dateObject.getUTCMonth()];
+  const year = dateObject.getUTCFullYear();
 
   return `${day} ${month} ${year}`;
 }

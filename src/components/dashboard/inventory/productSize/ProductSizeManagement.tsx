@@ -30,7 +30,7 @@ export const ProductSizeDataColumn: DashboardTableColumn[] = [
     dataKey: 'date',
     row: (data: SizeResponseType) => (
       <div>
-        <p className="text-sm">{formatTimestamp(data.created_at)}</p>
+        <p className="text-sm">{formatTimestamp(data?.created_at)}</p>
       </div>
     ),
   },

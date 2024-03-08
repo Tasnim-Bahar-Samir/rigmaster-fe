@@ -21,6 +21,8 @@ const SizeForm: FC<SizeFormProps> = ({
     initialValues: {
       size_title: instance?.size_title || '',
       size_details: instance?.size_details || '',
+      shirt_size_details: instance?.shirt_size_details || '',
+      polo_size_details: instance?.polo_size_details || '',
     },
     validationSchema: sizeFormValidation,
     onSubmit: async (data: any) => {
@@ -89,8 +91,39 @@ const SizeForm: FC<SizeFormProps> = ({
               className="w-full"
               name="size_details"
               onChange={handleChange}
-              label="Size Details"
+              label="Panjabi Size Details"
             />
+            <TextField
+              rows={3}
+              multiline
+              value={values.shirt_size_details}
+              error={touched.shirt_size_details && Boolean(errors.shirt_size_details)}
+              helperText={
+                touched.shirt_size_details && typeof errors.shirt_size_details === 'string'
+                  ? errors.shirt_size_details
+                  : ''
+              }
+              className="w-full"
+              name="shirt_size_details"
+              onChange={handleChange}
+              label="Shirt Size Details"
+            />
+            <TextField
+              rows={3}
+              multiline
+              value={values.polo_size_details}
+              error={touched.polo_size_details && Boolean(errors.polo_size_details)}
+              helperText={
+                touched.polo_size_details && typeof errors.polo_size_details === 'string'
+                  ? errors.polo_size_details
+                  : ''
+              }
+              className="w-full"
+              name="polo_size_details"
+              onChange={handleChange}
+              label="Polo Size Details"
+            />
+
             <div className="flex mt-4 items-center gap-2">
               <button
                 onClick={() => setOpen(false)}
