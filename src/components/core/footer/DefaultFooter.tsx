@@ -1,29 +1,29 @@
 import { CategoryResponseType, useGetCategoryData } from '@/hooks/productCategory.hook';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FaFacebook, FaInstagram, FaPhone, FaTwitter, FaWhatsapp } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaLinkedinIn, FaPhone, FaWhatsapp } from 'react-icons/fa';
 import { MdEmail } from 'react-icons/md';
 
 const SocialSection = () => {
   return (
     <ul className="flex items-center gap-3 xl:gap-4">
       <li className="bg-[#C2A466] rounded-full p-2 text-white w-fit hover:bg-black transition-all">
-        <Link href={'https://www.facebook.com/'} target="_blank">
+        <Link href={'https://www.facebook.com/RigMasterBD'} target="_blank">
           <FaFacebook size={18} />
         </Link>
       </li>
       <li className="bg-[#C2A466] rounded-full p-2 text-white w-fit hover:bg-black transition-all">
-        <Link href={'https://www.instagram.com/'} target="_blank">
+        <Link href={'https://www.instagram.com/rigmasterbd/'} target="_blank">
           <FaInstagram size={18} />
         </Link>
       </li>
       <li className="bg-[#C2A466] rounded-full p-2 text-white w-fit hover:bg-black transition-all">
-        <Link href={'https://twitter.com/'} target="_blank">
-          <FaTwitter size={18} />
+        <Link href={'https://www.linkedin.com/company/rigmasterbd/'} target="_blank">
+          <FaLinkedinIn size={18} />
         </Link>
       </li>
       <li className="bg-[#C2A466] rounded-full p-2 text-white w-fit hover:bg-black transition-all">
-        <a aria-label="Chat on WhatsApp" href="https://wa.me/+880 1572-241894" target="_blank">
+        <a aria-label="Chat on WhatsApp" href="https://wa.me/09606-999910" target="_blank">
           <FaWhatsapp size={18} />
         </a>
       </li>

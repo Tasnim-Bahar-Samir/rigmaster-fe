@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: ProductDetailsProps): Promise
   }
   return {
     title: _?.results[0].title,
+    description: _?.results[0].meta_description,
     openGraph: {
       type: 'website',
       url: '/',
