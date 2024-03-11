@@ -20,7 +20,7 @@ const CartAside = () => {
         </Link>
       </div>
       <Drawer anchor={'right'} open={cartOpen} onClose={() => setCartOpen(!cartOpen)}>
-        <div className=" w-80 p-5 h-full">
+        <div className=" w-80 p-5 h-full md:w-96">
           <div className="flex justify-between items-center border-b">
             <span
               className="cursor-pointer text-lg font-medium"
@@ -31,7 +31,7 @@ const CartAside = () => {
             <h1 className="font-bold text-2xl">Cart</h1>
           </div>
           <div className="mt-3">
-            <ul className="flex h-[80vh] overflow-y-auto mt-4 flex-col gap-5">
+            <ul className="flex h-[70vh] overflow-y-auto mt-4 flex-col gap-5">
               {products?.map((i: CartDataType) => (
                 <div className="flex items-center justify-between" key={Math.random()}>
                   <div className="flex items-center gap-3">
@@ -52,6 +52,7 @@ const CartAside = () => {
                     </div>
                   </div>
                   <MdDelete
+                    size={18}
                     onClick={() => deleteSingleProduct(i.id)}
                     className="text-red-600 cursor-pointer"
                   />

@@ -33,16 +33,14 @@ const TableRow: FC<TableRowProps> = ({ instance }) => {
       <td className="lg:px-1 py-4 text-sm md:text-[16px]">
         <p className="hidden md:block ">{instance.price}৳</p>
       </td>
-      <td className="lg:px-1 py-4 text-sm font-bold text-right md:text-[16px]">
-        <div className="flex items-center gap-3 border p-2 w-fit md:px-3 xl:gap-4">
+      <td className="lg:px-1 py-4 text-sm px-1 font-bold text-right md:text-[16px]">
+        <div className="flex items-center gap-3 border w-fit px-3 py-2 xl:gap-4">
           <button onClick={() => setQuantity(instance.id, 'decrease')}>-</button>
           {instance.quantity}
           <button onClick={() => setQuantity(instance.id, 'increase')}>+</button>
         </div>
       </td>
-      <td className="lg:px-1 py-4 text-sm md:text-[16px] ">
-        {instance.quantity * instance.price}৳
-      </td>
+      <td className="px-1 py-4 text-sm md:text-[16px] ">{instance.quantity * instance.price}৳</td>
 
       <td className="lg:px-1 py-4 text-sm md:text-[16px]">
         <MdDelete
