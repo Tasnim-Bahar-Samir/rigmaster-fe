@@ -127,6 +127,7 @@ const ProductManagement = () => {
           Add New
         </Link>
       </div>
+      <p>Total Products: {data?.count}</p>
       <div>
         <div>
           <DashboardTable columns={_col} isLoading={isLoading} data={data?.results || []} />

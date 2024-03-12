@@ -85,8 +85,8 @@ export const statusData = [
     title: 'Delivered',
     value: 'DELIVERED',
   },
-  {
-    title: 'Cancelled',
-    value: 'CANCELLED',
-  },
+  // {
+  //   title: 'Cancelled',
+  //   value: 'CANCELLED',
+  // },
 ];

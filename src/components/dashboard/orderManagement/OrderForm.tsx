@@ -22,7 +22,13 @@ const OrderForm: FC<OrderFormProps> = ({ handleDataSubmit, isDataSubmiting, inst
     // validationSchema: contactFormValidation,
     onSubmit: async (data: any) => {
       try {
-        await handleDataSubmit({ status: data.status });
+        const billing_data = {
+          name: data?.name,
+          phone: data?.phone,
+          emails: data?.email,
+          address: data?.address,
+        };
+        await handleDataSubmit({ status: data.status, billing_address: billing_data });
         setOpen(!open);
         enqueueSnackbar('Status Updated successfully.', {
           variant: 'success',

@@ -5,6 +5,8 @@ import { usePathname } from 'next/navigation';
 import { MdDashboard } from 'react-icons/md';
 import { RiListUnordered } from 'react-icons/ri';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { FaRegFileArchive } from 'react-icons/fa';
+import { GiClothes } from 'react-icons/gi';
 
 const AsideMenu = () => {
   //   const router = useRouter();
@@ -40,7 +42,7 @@ const AsideMenu = () => {
               }}
             >
               <span className="flex items-center gap-2.5">
-                <MdDashboard className="text-2xl" />
+                <GiClothes className="text-2xl" />
                 <span className="lg:text-lg">Product</span>
               </span>
             </Typography>
@@ -79,11 +81,21 @@ const AsideMenu = () => {
           </AccordionDetails>
         </Accordion>
       </li>
-      <li className={` text-lg mt-5 ${pathname === '/dashboard/order' ? 'text-[#C2A466]' : ''}`}>
+      <li className={` text-lg mt-5 ${pathname === '/dashboard/orders' ? 'text-[#C2A466]' : ''}`}>
         <Link href="/dashboard/orders">
           <span className="flex items-center gap-2.5">
             <RiListUnordered className="text-2xl" />
             <span className="lg:text-lg">All Orders</span>
+          </span>
+        </Link>
+      </li>
+      <li
+        className={` text-lg mt-5 ${pathname === '/dashboard/orders/archive' ? 'text-[#C2A466]' : ''}`}
+      >
+        <Link href="/dashboard/orders/archive">
+          <span className="flex items-center gap-2.5">
+            <FaRegFileArchive className="text-2xl" />
+            <span className="lg:text-lg">Cancelled Orders</span>
           </span>
         </Link>
       </li>

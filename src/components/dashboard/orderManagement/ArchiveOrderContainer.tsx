@@ -1,10 +1,8 @@
 'use client';
 import DashboardTable, { DashboardTableColumn } from '@/components/core/table/DashboardTable';
 import { useState } from 'react';
-import { useDeleteOrder, useGetOrderData, useUpdateOrderData } from '@/hooks/order.hooks';
+import { useGetOrderData } from '@/hooks/order.hooks';
 import { dateWithTimeFormat } from '@/libs/convertDateFormat';
-import OrderActions from './OrderActions';
-import { statusData } from '@/data/dummy.data';
 import DashboardPagination from '@/components/core/pagination/DashboardPagination';
 
 export const OrderDataColumn: DashboardTableColumn[] = [
@@ -55,40 +53,28 @@ export const OrderDataColumn: DashboardTableColumn[] = [
   },
 ];
 
-const Action = ({ data }: { data: any }) => {
-  const { mutateAsync: handleEdit, isLoading: isDataEditing } = useUpdateOrderData(data.id);
-  const { mutateAsync: handleDelete, isLoading: isDataDeleting } = useDeleteOrder(data.id);
-  return (
-    <OrderActions
-      handleEdit={handleEdit}
-      isDataEditing={isDataEditing}
-      isDataDeleting={isDataDeleting}
-      handleDeleteFun={handleDelete}
-      instance={data}
-    />
-  );
-};
+// const Action = ({ data }: { data: any }) => {
+//   const { mutateAsync: handleEdit, isLoading: isDataEditing } = useUpdateOrderData(data.id);
+//   const { mutateAsync: handleDelete, isLoading: isDataDeleting } = useDeleteOrder(data.id);
+//   return (
+//     <OrderActions
+//       handleEdit={handleEdit}
+//       isDataEditing={isDataEditing}
+//       isDataDeleting={isDataDeleting}
+//       handleDeleteFun={handleDelete}
+//       instance={data}
+//     />
+//   );
+// };
 
-const _col = [
-  ...OrderDataColumn,
-  {
-    title: 'Action',
-    dataKey: 'action',
-    row: (data: any) => (
-      <div className="flex justify-end">
-        <Action data={data} />
-      </div>
-    ),
-  },
-];
+const _col = [...OrderDataColumn];
 
 //default component
-const OrderManagement = () => {
-  const [status, setStatus] = useState('PENDING,PROCESS,DELIVERED,SHIFT');
+const ArchiveOrderContainer = () => {
   const [currentPage, setCurrentPage] = useState(1);
   let dataPerpage = 20;
   let offset = (currentPage - 1) * dataPerpage;
-  const { data, isLoading } = useGetOrderData(status, dataPerpage, offset);
+  const { data, isLoading } = useGetOrderData('CANCELLED', dataPerpage, offset);
   const totalData = data?.count;
   const pageCount = Math.ceil(totalData / dataPerpage);
   return (
@@ -96,16 +82,12 @@ const OrderManagement = () => {
       <h4 className="text-2xl font-bold">Order List.</h4>
       <div className="flex items-center justify-between">
         <p className="text-lg capitalize">
-          {status == 'PENDING,PROCESS,DELIVERED,SHIFT' ? 'All' : status.toLowerCase()} Orders:{' '}
-          <span className="font-semibold">{data?.count}</span>
+          Cancelled Orders: <span className="font-semibold">{data?.count}</span>
         </p>
-        <div className="w-fit px-4 border rounded-lg">
+        {/* <div className="w-fit px-4 border rounded-lg">
           <select
             value={status}
-            onChange={(e) => {
-              setStatus(e.target.value);
-              setCurrentPage(1);
-            }}
+            onChange={(e) => setStatus(e.target.value)}
             className="bg-inherit py-2 outline-none"
           >
             <option value="PENDING,PROCESS,DELIVERED,SHIFT">All Orders</option>
@@ -115,7 +97,7 @@ const OrderManagement = () => {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
       </div>
       <div>
         <div>
@@ -133,4 +115,4 @@ const OrderManagement = () => {
   );
 };
 
-export default OrderManagement;
+export default ArchiveOrderContainer;

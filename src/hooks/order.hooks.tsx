@@ -10,7 +10,7 @@ export const useGetOrderData = (status = '', limit: number, offset: number) => {
     queryKey: ['order', status, limit, offset],
     queryFn: () =>
       axiousResuest({
-        url: `/order/cod/?status=${status}&limit${limit}&offset=${offset}&ordering=-created_at`,
+        url: `/order/cod/?status__in=${status}&limit${limit}&offset=${offset}&ordering=-created_at`,
         method: 'get',
         headers: {
           Authorization: `Bearer ${session.accessToken}`,

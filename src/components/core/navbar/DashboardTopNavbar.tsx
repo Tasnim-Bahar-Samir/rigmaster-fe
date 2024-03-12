@@ -1,3 +1,4 @@
+import { signOut } from 'next-auth/react';
 import Image from 'next/legacy/image';
 import Link from 'next/link';
 import React from 'react';
@@ -27,11 +28,11 @@ const DashboardTopNav = () => {
           <div className="flex justify-between  items-center w-full pb-6 pl-4 md:pl-7">
             <div className="flex gap-3 md:gap-6">
               <div className="flex gap-2">
-                <span className="p-2 cursor-pointer bg-[#878787] hover:bg-[#267D3E] rounded-md border text-white">
+                <span className="p-2 cursor-pointer bg-[#878787] hover:bg-[#C2A466] rounded-md border text-white">
                   <HiArrowNarrowLeft className="text-sm md:text-xl" />
                 </span>
 
-                <span className="p-2 cursor-pointer bg-[#878787] hover:bg-[#267D3E] rounded-md border text-white">
+                <span className="p-2 cursor-pointer bg-[#878787] hover:bg-[#C2A466] rounded-md border text-white">
                   <HiArrowNarrowRight className="text-sm md:text-xl" />
                 </span>
               </div>
@@ -63,7 +64,7 @@ export const SignOut = () => {
         </div>
       </div>
       <div>
-        <FiLogOut className="font-bold cursor-pointer" size={20} />
+        <FiLogOut onClick={() => signOut()} className="font-bold cursor-pointer" size={20} />
       </div>
     </div>
   );
