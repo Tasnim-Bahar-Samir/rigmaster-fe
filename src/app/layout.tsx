@@ -28,6 +28,11 @@ export const metadata: Metadata = {
     //   },
     // ],
   },
+  verification: {
+    other: {
+      'facebook-domain-verification': 'xb6racmlfyevcqnfppw9oxytb9huf2',
+    },
+  },
 };
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
