@@ -46,7 +46,7 @@ export const OrderDataColumn: DashboardTableColumn[] = [
     title: 'Date',
     dataKey: 'date',
     row: (data: any) => (
-      <div>
+      <div className="flex justify-end">
         <p className="text-sm">{dateWithTimeFormat(data.created_at)}</p>
       </div>
     ),
