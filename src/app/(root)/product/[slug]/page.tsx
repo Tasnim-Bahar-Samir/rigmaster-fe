@@ -1,7 +1,7 @@
 import ProductDetailsPage from '@/components/pages/product/productDetails/ProductDetials.page';
 import axiousResuest from '@/libs/axiosRequest';
 // import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+// import { notFound } from 'next/navigation';
 import React, { FC } from 'react';
 
 type ProductDetailsProps = {
@@ -47,7 +47,14 @@ const ProductDetails: FC<ProductDetailsProps> = async ({ params }) => {
       </div>
     );
   } catch (error) {
-    notFound();
+    // notFound();
+    return (
+      <div>
+        <p>{params?.slug}</p>
+        <hr />
+        {JSON.stringify(error).toString()}
+      </div>
+    );
   }
 };
 
