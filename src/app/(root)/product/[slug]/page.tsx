@@ -1,5 +1,5 @@
 import ProductDetailsPage from '@/components/pages/product/productDetails/ProductDetials.page';
-import axiousResuest from '@/libs/axiosRequest';
+// import axiousResuest from '@/libs/axiosRequest';
 // import { Metadata } from 'next';
 // import { notFound } from 'next/navigation';
 import React, { FC } from 'react';
@@ -36,11 +36,13 @@ type ProductDetailsProps = {
 
 const ProductDetails: FC<ProductDetailsProps> = async ({ params }) => {
   try {
-    const productDetails = await axiousResuest({
-      url: `/product/management/?slug=${params.slug}`,
-      method: 'get',
-    });
-
+    // const productDetails = await axiousResuest({
+    //   url: `/product/management/?slug=${params.slug}`,
+    //   method: 'get',
+    // });
+    const res = await fetch(`https://api.rigmasteronline.com/product/management/?slug=${params.slug}`)
+    const productDetails = await res.json()
+    // console.log(productDetails)
     return (
       <div>
         <ProductDetailsPage productDetails={productDetails?.results?.[0]} />
