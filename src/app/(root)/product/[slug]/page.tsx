@@ -51,8 +51,6 @@ const ProductDetails: FC<ProductDetailsProps> = async ({ params }) => {
     return (
       <div>
         <p>{params?.slug}</p>
-        <hr />
-        {JSON.stringify(error).toString()}
       </div>
     );
   }
