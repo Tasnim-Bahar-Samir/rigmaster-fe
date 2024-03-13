@@ -110,7 +110,11 @@ const OrderManagement = () => {
           >
             <option value="PENDING,PROCESS,DELIVERED,SHIFT">All Orders</option>
             {statusData.map((i) => (
-              <option value={i.value} key={Math.random()}>
+              <option
+                className={`${i.value == 'CANCELLED' ? 'hidden' : ''}`}
+                value={i.value}
+                key={Math.random()}
+              >
                 {i.title}
               </option>
             ))}
