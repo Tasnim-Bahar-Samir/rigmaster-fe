@@ -28,12 +28,7 @@ export const metadata: Metadata = {
     //     url: `https://the-yolo-studio.sgp1.cdn.digitaloceanspaces.com/tammlit.com/assets/tammlit_og.jpg`,
     //   },
     // ],
-  },
-  verification: {
-    other: {
-      'facebook-domain-verification': 'xb6racmlfyevcqnfppw9oxytb9huf2',
-    },
-  },
+  }
 };
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
