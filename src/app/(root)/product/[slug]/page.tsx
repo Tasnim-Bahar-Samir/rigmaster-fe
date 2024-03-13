@@ -46,11 +46,13 @@ const ProductDetails: FC<ProductDetailsProps> = async ({ params }) => {
         <ProductDetailsPage productDetails={productDetails?.results?.[0]} />
       </div>
     );
-  } catch (error) {
+  } catch (error:any) {
     // notFound();
     return (
       <div>
         <p>{params?.slug}</p>
+        <hr />
+        <p>{error?.message?.toString()}</p>
       </div>
     );
   }
