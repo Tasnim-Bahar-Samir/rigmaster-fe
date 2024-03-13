@@ -82,8 +82,8 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
   return (
     <div className="flex gap-10 flex-col lg:gap-20 md:flex-row">
       <div className="md:w-1/2">
-        <PhotoProvider>
-          <div className="flex flex-col-reverse gap-3 lg:flex-row">
+        <div className="flex flex-col-reverse gap-3 lg:flex-row">
+          <PhotoProvider>
             <div className=" gap-2 grid grid-cols-4 lg:flex lg:flex-col lg:w-1/5">
               {product_image?.map((i: any) => (
                 <div
@@ -103,6 +103,8 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
                 </div>
               ))}
             </div>
+          </PhotoProvider>
+          <PhotoProvider>
             <div className="lg:w-4/5">
               <PhotoView src={img.image}>
                 <Image
@@ -116,9 +118,12 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
                   priority
                 />
               </PhotoView>
+              {product_image.map((i: any, idx: number) => (
+                <PhotoView key={idx} src={i.image}></PhotoView>
+              ))}
             </div>
-          </div>
-        </PhotoProvider>
+          </PhotoProvider>
+        </div>
       </div>
       <div className=" flex md:justify-start md:w-1/2">
         <div className="space-y-4 md:space-y-5 xl:space-y-8">
