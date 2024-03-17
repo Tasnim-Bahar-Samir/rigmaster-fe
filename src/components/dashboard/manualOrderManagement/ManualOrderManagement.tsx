@@ -3,12 +3,15 @@ import DashboardTable, { DashboardTableColumn } from '@/components/core/table/Da
 import { useState } from 'react';
 import { useDeleteOrder, useGetOrderData, useUpdateOrderData } from '@/hooks/order.hooks';
 import { dateWithTimeFormat } from '@/libs/convertDateFormat';
-import OrderActions from './OrderActions';
-import { statusData } from '@/data/dummy.data';
 import DashboardPagination from '@/components/core/pagination/DashboardPagination';
 import { getOrderSubtotal } from '@/libs/getOrderSubtotal';
+import OrderActions from '../orderManagement/OrderActions';
+import ManualOrderForm from './ManualOrderForm';
+import { useGetProductData } from '@/hooks/product.hooks';
+import { useGetSizeData } from '@/hooks/productSize.hooks';
+import { CircularProgress } from '@mui/material';
 
-export const OrderDataColumn: DashboardTableColumn[] = [
+export const ManualOrderDataColumn: DashboardTableColumn[] = [
   {
     title: 'Customer',
     dataKey: 'customer',
@@ -81,7 +84,7 @@ const Action = ({ data }: { data: any }) => {
 };
 
 const _col = [
-  ...OrderDataColumn,
+  ...ManualOrderDataColumn,
   {
     title: 'Action',
     dataKey: 'action',
@@ -94,43 +97,32 @@ const _col = [
 ];
 
 //default component
-const OrderManagement = () => {
-  const [status, setStatus] = useState('PENDING,PROCESS,DELIVERED,SHIFT');
+const ManualOrderManagement = () => {
+  const { data: productData, isLoading: isProdDataLoading } = useGetProductData('', '', 50, 0);
+  const { data: sizeData, isLoading: isSizeDataLoading } = useGetSizeData('');
+  //   const [status, setStatus] = useState('PENDING,PROCESS,DELIVERED,SHIFT');
   const [currentPage, setCurrentPage] = useState(1);
   let dataPerpage = 20;
   let offset = (currentPage - 1) * dataPerpage;
-  const { data, isLoading } = useGetOrderData(status, dataPerpage, offset);
+  const { data, isLoading } = useGetOrderData('', dataPerpage, offset);
   const totalData = data?.count;
   const pageCount = Math.ceil(totalData / dataPerpage);
   return (
     <div className="space-y-8">
-      <h4 className="text-2xl font-bold">Order List.</h4>
       <div className="flex items-center justify-between">
-        <p className="text-lg capitalize">
-          {status == 'PENDING,PROCESS,DELIVERED,SHIFT' ? 'All' : status.toLowerCase()} Orders:{' '}
-          <span className="font-semibold">{data?.count}</span>
-        </p>
-        <div className="w-fit px-4 border rounded-lg">
-          <select
-            value={status}
-            onChange={(e) => {
-              setStatus(e.target.value);
-              setCurrentPage(1);
-            }}
-            className="bg-inherit py-2 outline-none"
-          >
-            <option value="PENDING,PROCESS,DELIVERED,SHIFT">All Orders</option>
-            {statusData.map((i) => (
-              <option
-                className={`${i.value == 'CANCELLED' ? 'hidden' : ''}`}
-                value={i.value}
-                key={Math.random()}
-              >
-                {i.title}
-              </option>
-            ))}
-          </select>
-        </div>
+        <h4 className="text-2xl font-bold">Manual Order List.</h4>
+        {isProdDataLoading || isSizeDataLoading ? (
+          <div className="flex items-center justify-center">
+            <CircularProgress />
+          </div>
+        ) : (
+          <ManualOrderForm
+            handleDataSubmit={() => undefined}
+            isDataSubmiting={false}
+            productData={productData?.results}
+            sizeData={sizeData?.results}
+          />
+        )}
       </div>
       <div>
         <div>
@@ -148,4 +140,4 @@ const OrderManagement = () => {
   );
 };
 
-export default OrderManagement;
+export default ManualOrderManagement;

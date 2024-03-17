@@ -20,7 +20,7 @@ export const ProductDataColumn: DashboardTableColumn[] = [
             <Image
               className="rounded-[8px] object-cover"
               src={data?.product_image?.find((i: any) => i.is_feature)?.image || '#'}
-              alt="asd"
+              alt="product_image"
               width={65}
               height={65}
             />
@@ -41,7 +41,8 @@ export const ProductDataColumn: DashboardTableColumn[] = [
         <p className="text-sm">
           {data?.product_size_varient?.map((i: any, idx: number) => (
             <span key={Math.random()}>
-              {i?.size?.size_title + (data?.product_size_varient?.length == idx + 1 ? '' : ' ,')}
+              {`(${i?.size?.size_title}-${i?.quantity})` +
+                (data?.product_size_varient?.length == idx + 1 ? '' : ', ')}
             </span>
           ))}
         </p>

@@ -90,6 +90,16 @@ const AsideMenu = () => {
         </Link>
       </li>
       <li
+        className={` text-lg mt-5 ${pathname === '/dashboard/orders/manual' ? 'text-[#C2A466]' : ''}`}
+      >
+        <Link href="/dashboard/orders/manual">
+          <span className="flex items-center gap-2.5">
+            <RiListUnordered className="text-2xl" />
+            <span className="lg:text-lg">Manual Orders</span>
+          </span>
+        </Link>
+      </li>
+      <li
         className={` text-lg mt-5 ${pathname === '/dashboard/orders/archive' ? 'text-[#C2A466]' : ''}`}
       >
         <Link href="/dashboard/orders/archive">
