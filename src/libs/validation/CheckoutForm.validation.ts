@@ -16,3 +16,14 @@ export const checkoutFormValidation = () =>
     address: yup.string(),
     email: yup.string().email(),
   });
+
+export const manualOrderFormValidation = () =>
+  yup.object().shape({
+    name: yup.string().required('Name is required'),
+    created_by: yup.string().required('Creator name is required'),
+    phone: yup.string().matches(phoneReg, 'Phone number is not valid').max(11).min(11),
+    // division: yup.string().required("Division is required"),
+    // district: yup.string().required("District is required"),
+    address: yup.string(),
+    email: yup.string().email(),
+  });

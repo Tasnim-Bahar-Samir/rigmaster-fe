@@ -38,6 +38,9 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
     if (!size) {
       return setError('Please select a size!');
     }
+    if (quantity > size?.quantity) {
+      return setError(`Insuficient stock! Only available ${size.quantity} instock.`);
+    }
     const productData = {
       productId: id,
       id: size?.id,
@@ -52,10 +55,14 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
     };
     setDerectByProduct([productData]);
     push('/checkout');
+    setError('');
   };
   const handleAddTocart = () => {
     if (!size) {
       return setError('Please select a size!');
+    }
+    if (quantity > size?.quantity) {
+      return setError(`Insuficient stock! Only available ${size.quantity} instock.`);
     }
     const productData = {
       productId: id,
@@ -69,6 +76,7 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
       quantity: quantity,
       product_code: slug,
     };
+
     const alreadyExist = products.find((prod: any) => prod.id === size?.id);
     if (alreadyExist) {
       setIncreaseQuantityAsDuplicate(size?.id, quantity);
@@ -77,6 +85,7 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
     }
     setProduct(productData);
     setCartOpen(!cartOpen);
+    setError('');
   };
 
   return (

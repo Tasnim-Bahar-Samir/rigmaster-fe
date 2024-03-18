@@ -7,6 +7,7 @@ import { RiListUnordered } from 'react-icons/ri';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { FaRegFileArchive } from 'react-icons/fa';
 import { GiClothes } from 'react-icons/gi';
+import { TbManualGearbox } from 'react-icons/tb';
 
 const AsideMenu = () => {
   //   const router = useRouter();
@@ -89,16 +90,16 @@ const AsideMenu = () => {
           </span>
         </Link>
       </li>
-      {/* <li
+      <li
         className={` text-lg mt-5 ${pathname === '/dashboard/orders/manual' ? 'text-[#C2A466]' : ''}`}
       >
         <Link href="/dashboard/orders/manual">
           <span className="flex items-center gap-2.5">
-            <RiListUnordered className="text-2xl" />
+            <TbManualGearbox className="text-2xl" />
             <span className="lg:text-lg">Manual Orders</span>
           </span>
         </Link>
-      </li> */}
+      </li>
       <li
         className={` text-lg mt-5 ${pathname === '/dashboard/orders/archive' ? 'text-[#C2A466]' : ''}`}
       >

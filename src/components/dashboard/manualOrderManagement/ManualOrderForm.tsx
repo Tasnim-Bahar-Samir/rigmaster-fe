@@ -5,21 +5,27 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { FC, useState } from 'react';
 import Image from 'next/legacy/image';
 import { MdDelete } from 'react-icons/md';
+import { orderItem } from '@/libs/calculateBill';
+import { manualOrderFormValidation } from '@/libs/validation/CheckoutForm.validation';
 
 type ManualOrderFormProps = {
+  isProdDataLoading: boolean;
   isDataSubmiting: boolean;
   handleDataSubmit: Function;
   productData: any[];
-  sizeData: any[];
   instance?: any;
+  setProdSearch: Function;
 };
 const ManualOrderForm: FC<ManualOrderFormProps> = ({
+  isProdDataLoading,
+  setProdSearch,
   productData,
-  sizeData,
   handleDataSubmit,
   isDataSubmiting,
   instance,
 }) => {
+  // const [selectedProducts, setSelectedProducts] = useState<any>([]);
+  const [error, setError] = useState('');
   const [open, setOpen] = useState(false);
   const { setFieldValue, values, touched, errors, resetForm, handleSubmit, handleChange } =
     useFormik({
@@ -28,23 +34,34 @@ const ManualOrderForm: FC<ManualOrderFormProps> = ({
         product: null,
         size: null,
         quantity: 1,
+        created_by: '',
         name: instance?.billing_address?.name || '',
         phone: instance?.billing_address?.phone || '',
         email: instance?.billing_address?.email || '',
         address: instance?.billing_address?.address || '',
+        selectedProducts: [],
       },
-      // validationSchema: contactFormValidation,
+      validationSchema: manualOrderFormValidation,
       onSubmit: async (data: any) => {
+        if (values?.selectedProducts?.length < 1) {
+          setError('Add atleast one product.');
+          return;
+        }
         try {
-          const billing_data = {
+          const billingInfo = {
             name: data?.name,
-            phone: data?.phone,
-            emails: data?.email,
-            address: data?.address,
+            email: data?.email,
+            phone: data.phone,
+            address: data.address,
+            created_by: data?.created_by,
           };
-          await handleDataSubmit({ status: data.status, billing_address: billing_data });
+          const manualOrderData = {
+            custom_purchase_order: orderItem(values?.selectedProducts),
+            billing_address: billingInfo,
+          };
+          await handleDataSubmit(manualOrderData);
           setOpen(!open);
-          enqueueSnackbar('Status Updated successfully.', {
+          enqueueSnackbar('Order created successfully.', {
             variant: 'success',
           });
         } catch (err: any) {
@@ -56,12 +73,14 @@ const ManualOrderForm: FC<ManualOrderFormProps> = ({
         }
       },
     });
-  const [selectedProducts, setSelectedProducts] = useState<any>([]);
-  const [error, setError] = useState('');
+
   const handleSelectProduct = () => {
     if (!values.product || !values.size || !values?.quantity) {
       setError('Please Fill All Fields.');
       return;
+    }
+    if (values.quantity > values?.size?.quantity) {
+      return setError(`Insuficient stock! Only available ${values?.size.quantity} instock.`);
     }
     const productData = {
       thumbnail: values.product?.product_image?.filter((i: any) => i.is_feature)[0]?.image,
@@ -70,11 +89,12 @@ const ManualOrderForm: FC<ManualOrderFormProps> = ({
       color: values?.product?.color,
       productId: values.product?.id,
       quantity: values.quantity,
-      sizeTitle: values.size,
+      sizeTitle: values?.size?.size?.size_title,
     };
-    setSelectedProducts([...selectedProducts, productData]);
+    setFieldValue('selectedProducts', [...values?.selectedProducts, productData]);
     setFieldValue('product', null);
     setFieldValue('size', null);
+    setFieldValue('quantity', 1);
     setError('');
   };
 
@@ -91,25 +111,27 @@ const ManualOrderForm: FC<ManualOrderFormProps> = ({
         maxWidth="md"
         fullWidth
         onClose={() => {
-          setSelectedProducts([]);
+          setFieldValue('selectedProducts', []);
           resetForm();
           setOpen(false);
         }}
       >
         <form className="p-5" onSubmit={handleSubmit} noValidate autoComplete="off">
-          <h2 className="text-xl font-medium mb-3">Create Order</h2>
+          <h2 className="text-xl font-medium mb-6">Create Order</h2>
           <div className="space-y-4 xl:space-y-5">
-            <div className="mb-6">
+            <div className="mb-10">
               <div className="mb-4">
                 <div className="flex items-center gap-4">
                   <Autocomplete
                     fullWidth
+                    loading={isProdDataLoading}
+                    onInputChange={(e: any) => setProdSearch(e?.target?.value)}
                     disablePortal
                     value={values.product}
                     options={productData || []}
                     getOptionLabel={(option) => option.slug || ''}
                     isOptionEqualToValue={(option, value) => option.id === value.id}
-                    onChange={(_e, value) => {
+                    onChange={(e, value) => {
                       setFieldValue('product', value);
                     }}
                     renderInput={(params) => (
@@ -130,7 +152,9 @@ const ManualOrderForm: FC<ManualOrderFormProps> = ({
                     fullWidth
                     disablePortal
                     value={values.size}
-                    options={sizeData.map((i: any) => i?.size_title)}
+                    options={values?.product ? values?.product?.product_size_varient : []}
+                    getOptionLabel={(option) => option.size?.size_title || ''}
+                    isOptionEqualToValue={(option, value) => option.id === value.id}
                     onChange={(_e, value) => {
                       setFieldValue('size', value);
                     }}
@@ -165,8 +189,8 @@ const ManualOrderForm: FC<ManualOrderFormProps> = ({
                 </p>
               </div>
               <div className="space-y-3">
-                {selectedProducts?.length > 0 &&
-                  selectedProducts.map((i: any) => (
+                {values?.selectedProducts?.length > 0 &&
+                  values?.selectedProducts?.map((i: any, idx: number) => (
                     <div className="flex items-center gap-7" key={Math.random()}>
                       <div className="flex items-center gap-3">
                         <div className="bg-slate-200 w-16 h-16 relative">
@@ -189,13 +213,29 @@ const ManualOrderForm: FC<ManualOrderFormProps> = ({
                       </div>
                       <MdDelete
                         size={18}
-                        onClick={() => undefined}
+                        onClick={() => {
+                          const _ = values?.selectedProducts;
+                          _.splice(idx, 1);
+                          // console.log(selectedProducts);
+                          setFieldValue('selectedProducts', _);
+                        }}
                         className="text-red-600 cursor-pointer"
                       />
                     </div>
                   ))}
               </div>
             </div>
+            <TextField
+              value={values.created_by}
+              error={touched.created_by && Boolean(errors.created_by)}
+              helperText={
+                touched.created_by && typeof errors.created_by === 'string' ? errors.created_by : ''
+              }
+              className="w-full"
+              name="created_by"
+              onChange={handleChange}
+              label="Order Creator"
+            />
             <div className="space-y-5 w-full">
               <h1 className="font-semibold text-lg xl:text-xl">Shipping Address</h1>
               <div>
