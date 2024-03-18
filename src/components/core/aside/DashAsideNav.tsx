@@ -89,7 +89,7 @@ const AsideMenu = () => {
           </span>
         </Link>
       </li>
-      <li
+      {/* <li
         className={` text-lg mt-5 ${pathname === '/dashboard/orders/manual' ? 'text-[#C2A466]' : ''}`}
       >
         <Link href="/dashboard/orders/manual">
@@ -98,7 +98,7 @@ const AsideMenu = () => {
             <span className="lg:text-lg">Manual Orders</span>
           </span>
         </Link>
-      </li>
+      </li> */}
       <li
         className={` text-lg mt-5 ${pathname === '/dashboard/orders/archive' ? 'text-[#C2A466]' : ''}`}
       >

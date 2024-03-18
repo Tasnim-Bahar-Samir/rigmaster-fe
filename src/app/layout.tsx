@@ -57,7 +57,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', '401487229152678');
+            fbq('init', '944785684196932');
             fbq('track', 'PageView');
           `,
         }}
