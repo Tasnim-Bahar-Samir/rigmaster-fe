@@ -107,7 +107,7 @@ const ManualOrderManagement = () => {
   const { mutateAsync, isLoading: isOrderSubmitting } = useAddManualOrder();
   //   const [status, setStatus] = useState('PENDING,PROCESS,DELIVERED,SHIFT');
   const [currentPage, setCurrentPage] = useState(1);
-  let dataPerpage = 20;
+  let dataPerpage = 15;
   let offset = (currentPage - 1) * dataPerpage;
   const { data, isLoading } = useGetManualOrderData('', dataPerpage, offset);
   const totalData = data?.count;

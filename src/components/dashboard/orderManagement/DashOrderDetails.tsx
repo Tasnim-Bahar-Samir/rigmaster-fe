@@ -65,12 +65,14 @@ const DashOrderDetails: FC<DashOrderDetailsProps> = ({ manual, orderDetails, set
                   {purchase_order?.map((i: any) => (
                     <div className="flex items-center justify-between" key={Math.random()}>
                       <div className="relative flex items-center gap-3">
-                        <Image
-                          src={i?.product?.product_image?.[0].image}
-                          width={36}
-                          height={40}
-                          alt="product_image"
-                        />
+                        {!manual && (
+                          <Image
+                            src={i?.product?.product_image?.[0].image}
+                            width={36}
+                            height={40}
+                            alt="product_image"
+                          />
+                        )}
                         <p className="text-sm font-medium flex items-center gap-4">
                           {i?.product?.title}
                           {`(${i?.product?.slug})`}-
