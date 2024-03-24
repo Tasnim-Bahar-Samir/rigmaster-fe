@@ -10,7 +10,7 @@ export const useGetManualOrderData = (status = '', limit: number, offset: number
     queryKey: ['manual_order', status, limit, offset],
     queryFn: () =>
       axiousResuest({
-        url: `/order/custom/?status__in=${status}&limit${limit}&offset=${offset}&ordering=-created_at`,
+        url: `/order/custom/?status__in=${status}&limit=${limit}&offset=${offset}&ordering=-created_at`,
         method: 'get',
         headers: {
           Authorization: `Bearer ${session.accessToken}`,

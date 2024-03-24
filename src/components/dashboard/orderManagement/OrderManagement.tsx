@@ -102,6 +102,7 @@ const OrderManagement = () => {
   const { data, isLoading } = useGetOrderData(status, dataPerpage, offset);
   const totalData = data?.count;
   const pageCount = Math.ceil(totalData / dataPerpage);
+  // console.log(data?.results?.length)
   return (
     <div className="space-y-8">
       <h4 className="text-2xl font-bold">Order List.</h4>
