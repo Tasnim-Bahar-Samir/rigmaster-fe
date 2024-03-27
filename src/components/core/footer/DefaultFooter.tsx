@@ -93,9 +93,9 @@ const DefaultFooter = () => {
                 <MdEmail className="text-[#C2A466]" />
                 rigmasteronline@gmail.com
               </a>
-              <a href="tel:09606-999910" className="flex items-center gap-2">
+              <a href="tel:+8809647055567" className="flex items-center gap-2">
                 <FaPhone className="text-[#C2A466]" />
-                09606-999910
+                +8809647055567
               </a>
             </div>
             <SocialSection />

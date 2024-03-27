@@ -44,7 +44,7 @@ const Invoice: FC<InvoiceProps> = ({ orderDetails }) => {
               114 Jam-Kon-L Market (8th floor), Dutch Bangla Bank Building, Shenpara, Parbota,
               Mirpur-10, Dhaka, Bangladesh
             </p>
-            <p>Phone: 09606-999910</p>
+            <p>Phone: +8809647055567</p>
           </div>
           <div className="mb-2">
             <h5 className="text-2xl font-bold">Invoice</h5>

@@ -7,12 +7,12 @@ import { useAddOrder } from '@/hooks/order.hooks';
 
 const CheckoutPage = () => {
   const { products } = selectedProductStore();
-  const { mutateAsync, isLoading } = useAddOrder();
+  const { mutateAsync, isPending } = useAddOrder();
   return (
     <div className="rm-commonContainer">
       <div className="my-10 space-y-10 md:space-y-16 md:my-16 xl:space-y-20">
         {products?.length > 0 ? (
-          <CheckoutPageContainer handleDataSubmit={mutateAsync} isDataSubmitting={isLoading} />
+          <CheckoutPageContainer handleDataSubmit={mutateAsync} isDataSubmitting={isPending} />
         ) : (
           <EmptyCard title="Your Cart Is Empty!" />
         )}

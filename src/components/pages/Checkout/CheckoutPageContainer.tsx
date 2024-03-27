@@ -1,4 +1,5 @@
 import { calculateTotalBill, orderItem } from '@/libs/calculateBill';
+import { handleClickScroll } from '@/libs/handleSmoothScroll';
 import { checkoutFormValidation } from '@/libs/validation/CheckoutForm.validation';
 import { selectedProductStore } from '@/store/ProductCookiesStore';
 import { CartDataType } from '@/type/cart.type';
@@ -59,6 +60,7 @@ const CheckoutPageContainer: FC<CheckoutPageContainerProps> = ({
   });
   return (
     <div className="">
+      <p id="error" className="lg:hidden"></p>
       <form onSubmit={handleSubmit} noValidate autoComplete="off">
         <div className="flex gap-5 flex-col lg:flex-row xl:gap-10">
           {/* details form  */}
@@ -150,12 +152,21 @@ const CheckoutPageContainer: FC<CheckoutPageContainerProps> = ({
                 <input type="radio" checked name="" id="cod" />
                 <label htmlFor="cod">Cash On Delivery(COD)</label>
               </div>
-              <button
-                disabled={isDataSubmitting}
-                className="disabled:bg-slate-500 px-4 mt-3 gap-1 w-full py-2 bg-[#C2A466] text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4 xl:mt-5"
-              >
-                {isDataSubmitting ? 'Processing...' : 'Place Order'}
-              </button>
+              {!values.name || !values?.phone ? (
+                <button
+                  onClick={() => handleClickScroll('error')}
+                  className="disabled:bg-slate-500 px-4 mt-3 gap-1 w-full py-2 bg-[#C2A466] text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4 xl:mt-5"
+                >
+                  {isDataSubmitting ? 'Processing...' : 'Place Order'}
+                </button>
+              ) : (
+                <button
+                  disabled={isDataSubmitting}
+                  className="disabled:bg-slate-500 px-4 mt-3 gap-1 w-full py-2 bg-[#C2A466] text-white hover:bg-[#d6ba81] transition-all font-medium xl:px-8 xl:py-4 xl:mt-5"
+                >
+                  {isDataSubmitting ? 'Processing...' : 'Place Order'}
+                </button>
+              )}
             </div>
           </div>
         </div>
