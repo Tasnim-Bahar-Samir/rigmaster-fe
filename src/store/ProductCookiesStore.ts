@@ -72,7 +72,7 @@ export const selectedProductStore = create<SelectedProductState>((set, get) => (
     let _: any = [];
     get().products.map((i) => {
       if (i.id === id) {
-        i.quantity += increaseQuantity;
+        i.quantity = increaseQuantity;
       }
       _.push(i);
     });

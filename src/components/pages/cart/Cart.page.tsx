@@ -7,6 +7,7 @@ import { MdDelete } from 'react-icons/md';
 import Image from 'next/legacy/image';
 import EmptyCard from '@/components/core/EmptyCard';
 import { calculateTotalBill } from '@/libs/calculateBill';
+import { enqueueSnackbar } from 'notistack';
 
 type TableRowProps = {
   instance: CartDataType;
@@ -37,7 +38,20 @@ const TableRow: FC<TableRowProps> = ({ instance }) => {
         <div className="flex items-center gap-3 border w-fit px-3 py-2 xl:gap-4">
           <button onClick={() => setQuantity(instance.id, 'decrease')}>-</button>
           {instance.quantity}
-          <button onClick={() => setQuantity(instance.id, 'increase')}>+</button>
+          <button
+            onClick={() => {
+              if (instance?.quantity < instance?.stockQuantity) {
+                setQuantity(instance.id, 'increase');
+              } else {
+                enqueueSnackbar(`Reached maximum stock!`, {
+                  variant: 'error',
+                  autoHideDuration: 2000,
+                });
+              }
+            }}
+          >
+            +
+          </button>
         </div>
       </td>
       <td className="px-1 py-4 text-sm md:text-[16px] ">{instance.quantity * instance.price}৳</td>
@@ -90,7 +104,7 @@ const CartPage = () => {
               </Link>
             </h2>
           </div>
-          <div className="bg-slate-100 w-full lg:w-2/5">
+          <div className="bg-slate-100 w-full h-fit lg:w-2/5">
             <div className="p-5">
               <h3 className=" font-semibold mt-3 xl:mb-5 xl:text-lg">Cart Total</h3>
               <div className="space-y-5">

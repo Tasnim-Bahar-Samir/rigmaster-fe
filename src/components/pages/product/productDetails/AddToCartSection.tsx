@@ -81,6 +81,7 @@ const AddToCartSection = ({ productDetails }: { productDetails: any }) => {
     if (alreadyExist) {
       setIncreaseQuantityAsDuplicate(size?.id, quantity);
       setCartOpen(!cartOpen);
+      setError('');
       return;
     }
     setProduct(productData);
