@@ -43,6 +43,20 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = await getServerSession(authOptions);
   return (
     <html lang="en">
+      {/* Google Analytics */}
+      <Script
+        id="ga-script-loader"
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-TWREBK488L"
+      />
+      <Script id="ga-script" strategy="afterInteractive">
+        {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-TWREBK488L');
+      `}
+      </Script>
       {/* Meta Pixel Code */}
       <Script
         id="facebook-pixel"
